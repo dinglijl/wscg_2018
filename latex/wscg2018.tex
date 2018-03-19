@@ -299,11 +299,18 @@ A visibility histogram \cite{correa_visibility_2011} represents the visibility d
 H_{R}=H_{r}/max(abs(H_{r}))
 \]
 where $ H_{r}=H_{L}-H$.
-The relative visibility histogram is scaled to the range $ [-1,1] $ by dividing by the maximum absolute value in the histogram.
+The relative visibility histogram is scaled to the range $ [-1,1] $ by dividing by the maximum absolute value in the histogram. 
+
+The purpose of the relative visibility histogram is as follows: firstly the local $ H_L $ component captures the dominant intensities in the  region of interest. Secondly, the subtraction and normalization against the global context captures a representation of which intensities are particularly strongly distributed within the ROI and not elsewhere in the view. We posit that when a user selects any particular region of inte
+
+
+An example is illustrated in Figure 1 and 2.
 \autoref{fig:nucleon_ori} shows a nucleon data set, its associated transfer function and sample modifications using our technique.
 The global visibility histogram is shown in 
 \autoref{fig:nucleon_hist}(a) and the local visibility histogram for the region of interest (the rectangle in inverted color) is shown in \autoref{fig:nucleon_hist}(b). The relative visibility histogram
 is show in \autoref{fig:nucleon_hist}(c).
+
+
 
 %The relative visibility histogram in \autoref{fig:relative_visibility_histogram} is choppy, which is probably due to the small size of the selected region and some intensity values are missing.
 

@@ -1,0 +1,264 @@
+% WSCG sample document 
+%
+% based on Gabriel Zachmann's sample
+% http://zach.in.tu-clausthal.de/latex/
+%
+% modified Apr 2012 to match WSCG Word template
+%
+\documentclass[twoside,twocolumn,10pt]{article}
+%\documentclass[twoside,twocolumn,draft]{article}
+
+%  for debugging
+%\tracingall%\tracingonline=0
+%\tracingparagraphs
+%\tracingpages
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                             Packages
+
+\usepackage{wscg}           % includes a number of other packages (e.g., myalgorithm)
+\RequirePackage{ifpdf}
+\ifpdf
+ \RequirePackage[pdftex]{graphicx}
+ \RequirePackage[pdftex]{color}
+\else
+ \RequirePackage[dvips,draft]{graphicx}
+ \RequirePackage[dvips]{color}
+\fi
+%\usepackage[german,english]{babel}     % default = english
+%\usepackage{mypicture}      % loads graphicx.sty, color.sty, eepic.sty
+%\usepackage{array}          % better tabular's & arrays, plus math tabular's
+%\usepackage{tabularx}      % for selfadjusting p-columns
+%\setlength{\extrarowheight}{1ex}   % additional space between rows
+%\usepackage{booktabs}      % typographically much better
+%\usepackage{mdwlist}        % for compacted lists, and more versatile lists
+%\usepackage[intlimits]{amsmath} % more math stuff, see texdoc amsldoc
+%\usepackage{mymath}         % own commands, loads amssymb & array.sty
+%\usepackage{hyphenat}      % hyphenatable -, /, etc.
+%\usepackage{theorem}
+%\usepackage[sort&compress]{natbib}% better \cite commands, more flexible
+%\usepackage[sort&compress,super]{natbib} % better \cite commands, more flexible
+%\newcommand{\citenumfont}[1]{\textit{#1}}
+
+
+\usepackage{nopageno}       % no page numbers at all; uncomment for final version
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                Title
+
+\title{WSCG Sample LaTeX file}
+
+\author{
+\parbox{0.25\textwidth}{\centering
+First Author\\[1mm]
+author's affiliation\\
+1st line of address\\
+2nd line of address\\
+Country (ZIP) code, City, State\\[1mm]
+e@mail
+}
+\hspace{0.05\textwidth}
+\parbox{0.25\textwidth}{\centering
+Second Author\\[1mm]
+author's affiliation\\
+1st line of address\\
+2nd line of address\\
+Country (ZIP) code, City, State\\[1mm]
+e@mail
+}
+\hspace{0.05\textwidth}
+\parbox{0.25\textwidth}{\centering
+Third Author\\[1mm]
+author's affiliation\\
+1st line of address\\
+2nd line of address\\
+Country (ZIP) code, City, State\\[1mm]
+e@mail
+}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                          Hyperref
+
+
+% no hyperlinks
+\usepackage{url}
+\urlstyle{tt}
+
+% Donald Arsenau's fix for missing kerning of "//" and ":/"
+\makeatletter
+\def\Uslash{\mathbin{\mathchar`\/}\@ifnextchar{/}{\kern-.15em}{}}
+\g@addto@macro\UrlSpecials{\do \/ {\Uslash}}
+\def\Ucolon{\mathbin{\mathchar`:}\@ifnextchar{/}{\kern-.1em}{}}
+\g@addto@macro\UrlSpecials{\do : {\Ucolon}}
+\makeatother
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              My Commands
+
+
+%\DeclareMathOperator{\sgn}{sgn}
+
+%\theorembodyfont{\upshape}
+%\theoremstyle{break}
+%\theoremheaderfont{\bfseries\normalsize}
+
+%\newtheorem{lem}{Lemma}
+%\newtheorem{defn}{Definition}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                Document
+
+
+\begin{document}
+
+\twocolumn[{\csname @twocolumnfalse\endcsname
+
+\maketitle  % full width title
+
+
+\begin{abstract}
+\noindent
+We describe the formatting guidelines for the Journal of WSCG and WSCG proceedings adapted from the ACM and SIGGRAPH proceedings and recent WSCG templates.  Please, try to fix format of your contribution as close as possible if you use other tools.
+
+\end{abstract}
+
+\subsection*{Keywords}
+Keywords are your own designated keywords - Times New Roman, 10pts.
+
+\vspace*{1.0\baselineskip}
+}]
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Introduction}
+
+\copyrightspace
+
+We ask authors to follow this guideline and make paper look exactly like as this document. The easiest way to do this is simply to download a template from \cite{jou01a} and replace the content with your own.
+
+\section{Page size}
+Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. 
+
+All material on all pages should fit within a rectangle of 16 x 23.7 cm (6.3"x 9.33"), centered on the page horizontally, beginning 2.5 cm (1") from the top of the page and ending with 3,5 cm (1.4") from the bottom.  The right and left margins should be 2.5 cm (1"). The text should be in two 7.6 cm (3") columns with a 0.8 cm (0.3") gutter. 
+
+\section{Typeset text}
+\subsection*{Normal or Body Text}
+Please use a 10-point Times Roman font, or other Roman font with serifs, as close as possible in appearance to Times Roman in which these guidelines have been set. The goal is to have a 10-point text, as you see here. Please use sans-serif or non-proportional fonts only for special purposes, such as distinguishing source code text. If Times Roman is not available, try the font named Computer Modern Roman. On a Macintosh, use the font named Times.  Right margins should be justified, not ragged.
+
+\subsection*{Title and Authors}
+The title (Helvetica 18-point bold), authors' names (Helvetica 10-point) and affiliations (Helvetica 10 point) run across the full width of the page -- one column wide. We also recommend e-mail address (Helvetica 10 point). See the top of this page for three addresses. If only one address is needed, center all address text. For two addresses, use two centered tabs, and so on. For more than three authors, you may have to improvise.\footnote{If necessary, you may place some address information in a footnote, or in a named section at the end of your paper, but margins must remain empty.} 
+
+\subsection*{First Page Copyright Notice}
+Please include 3.8 cm (1.5") text box with the text shown at the bottom of the left column of the first page with the copyright notice.
+
+\subsection*{Others Pages}
+Others pages start at the top of the page (margin 2.5 cm) and continue in double-column format.  The two columns on the last even page should be as close to equal length as possible. 
+
+{\bfseries Total length of a paper is max. 8 pages.}
+
+Footnotes should be Times New Roman 9-point, and justified to the full width of the column.
+
+Please, use the standard Journal of WSCG format for references -- that is, a numbered list at the end of the article, ordered alphabetically by first author, and referenced by a name in brackets \cite{con00a}. See the examples of citations at the end of this document. Within this template file, use the style named references for the text of your citation.
+
+The references are also in 9 pt., but that section (see Section \ref{references}) is ragged right. References should be published materials accessible to the public. Internal technical reports may be cited only if they are easily accessible (i.e. you can give the address to obtain the report within your citation) and may be obtained by any reader. Proprietary information may not be cited. Private communications should be acknowledged, not referenced, e.g. "[Adam, personal communication]").
+
+\subsection*{Page Numbering, Headers and Footers}
+Do not include headers, footers or page numbers in your submission. These will be added when the publications are assembled.
+
+\begin{figure}[htb]
+    \centering
+    \rule{6cm}{3cm}
+    \caption{Insert caption to place caption below figure.}
+    \label{fig:box}
+\end{figure}
+
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+	\hline
+	Graphics & Top & In-between & Bottom \\
+	\hline
+	Tables & End & Last & First \\
+	\hline
+	Figures & Good & Similar & Very well \\
+	\hline
+	\end{tabular}
+	\caption{Table captions should be placed below the table}
+\end{table}
+
+\section{Figures/Captions}
+Place Tables/Figures/Images in text as close to the reference as possible (see Fig.\ref{fig:box}). It may extend across both columns to a maximum width of 16 cm (6.3"). Captions should be Times New Roman 10-points.  They should be numbered (e.g., "Table 1" or "Figure 2"), please note that the word for Table and Figure are spelled out. Figure's and Table's captions should be centered beneath the image, picture or a table.
+
+\section{Sections}
+The heading of a section should be in Times New Roman 12-point bold in all-capitals flush left with an additional 6-points of white space above the section head.  Sections and subsequent sub- sections should be numbered and flush left. For a section head and a subsection head together (such as Section 3 and Subsection 3.1), use no additional space above the subsection head.
+
+\subsection{Subsections}
+The heading of subsections should be in Times New Roman 12-point bold with only the initial letters capitalized. (Note: For subsections and subsubsections, a word like the or a is not capitalized unless it is the first word of the header.)
+
+\subsubsection{Subsubsections}
+The heading for subsubsections should be in Times New Roman 11-point italic with initial letters capitalized and 6-points of white space above the subsubsection head.
+
+\section{Acknowledgments}
+Our thanks to ACM SIGCHI and SIGGRAPH for allowing us to modify templates they had developed.
+
+%-------------------------------------------------------------------------
+% example of algorithm typesetting
+% to allow this, uncomment line 
+% \RequirePackage[noend]{myalgorithm}
+% in the wscg.sty file
+% and download that package from Gabriel Zachmann's page http://zach.in.tu-clausthal.de/latex/
+%
+%
+%\begin{algorithm}
+%\hrule
+%  \centering
+%\begin{algorithmic}
+%    \STMT $d_{l,r} = f_B(P_1), f_B(P_n)$
+%    \WHILE{ $|d_l| > \epsilon $ and $|d_r| > \epsilon $ and $l<r$}
+%        \STMT $d_x = f_B(P_x)$
+%        \IF{ $d_x < 0$ }
+%            \STMT $l, r = x, r$
+%        \ELSE
+%            \STMT $l, r = l, x$
+%        \ENDIF
+%    \ENDWHILE
+%\end{algorithmic}
+%\hrule
+%\caption{Example of some pseudo-code}
+%\label{fg:code}
+%\end{algorithm}
+
+
+%-------------------------------------------------------------------------
+
+\begin{thebibliography}{99}
+\label{references}
+\bibitem[And01a]{and01a} Anderson, R.E. Social impacts of computing: Codes of professional ethics. Social Science, pp.453-469, 2001.
+\bibitem[Con00a]{con00a} Conger., S., and Loch, K.D. (eds.). Ethics and computer use. Com.of ACM 38, No.12, 2000.
+\bibitem[Con00b]{con00b} Mackay, W.E. Ethics, lies and videotape, in Conf.proc. CHI'00, Denver CO, ACM Press, pp.138-145, 2000.
+\bibitem[Jou01a]{jou01a} Journal of WSCG \& WSCG templates: http://wscg.zcu.cz/jwscg/template.doc (MSWord)
+http://wscg.zcu.cz/jwscg/template.pdf (PDF)
+\end{thebibliography}
+
+{\bfseries
+Last page should be fully used by text, figures etc. Do not leave empty space, please. 
+
+Do not lock the PDF -- additional text and info will be inserted, i.e. ISSN/ISBN etc. 
+}
+
+
+\end{document}
+
