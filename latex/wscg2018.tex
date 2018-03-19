@@ -181,23 +181,27 @@ Transfer function specification is an essential part of the volume visualization
 %A one-dimensional transfer function is a mapping from scalar values to color and alpha values.
 The specification is often achieved by a trial-and-error process, which involves a significant amount of tweaking of colors and opacity values, and the resultant visualization largely depends on how well the transfer function captures features of interest \cite{kniss_multidimensional_2002}.
 %However, it is non-trivial to obtain an effective transfer function. The specification is often achieved by a trial-and-error process, which involves a significant amount of tweaking of color and opacity.
+One of the challenges for such an approach is highlighted by Mindek et al.~\cite{mindek2017} who argue that often small changes in input parameters (i.e. the transfer function parameters) can lead to dis-proportionally large changes to the visualization. Whilst Mindek et al. propose a data-sensitive solution that address this dis-proportionality, others take the route of output-driven transfer function editing, that is, indirect manipulation of what is rendered, without the user being explicitly made aware of the underlying transfer function.
 
-The visibility of a sample refers to the alpha contribution of a sample to the final image, taking into account the degree to which it is occluded by other samples. This can be computed during ray-casting as the difference between the accumulated alpha of a sample and the accumulated alpha of the previous sample along a ray in the view direction \cite{emsenhuber_visibility_2008}.
-Correa et al. presented the general notion of visibility histograms \cite{correa_visibility_2011} which represent the distribution of visibility over intensity ranges in a volume rendering image.
-Wang et al. \cite{wang_efficient_2011} extended visibility histograms to feature visibility histograms for measuring the influence of features on the resultant volume rendered images.
-Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives features at a screen position with the highest visibility along a ray and exploited this information for volume picking.
 
 %Cai et al. \cite{cai_automatic_2013} described a method to derive opacity transfer functions by minimizing the Jensen-Shannon divergence between the observed visibility distribution and a user-defined target distribution. The target distribution can be defined using Gaussian function weighting.
 %Qin et al. \cite{qin_voxel_2015} proposed using a Gaussian mixture model to build a visibility distribution function and optimize the opacity transfer functions by minimizing the distance between the desired and actual voxel visibility distribution.
 
 %Guo et al. \cite{guo_wysiwyg_2011} proposed a sketch-based manipulation technique for volume visualization based on clustering of attributes such as depth, visibility, alpha and intensity.
-Guo et al. \cite{guo_wysiwyg_2011} proposed a sketch-based approach that allows direct manipulation of the transfer functions by brushing strokes on top of volume rendered images, which is similar to the operations in painting applications for 2D images.
-Later, Guo and Yuan \cite{guo_local_2013} extended the sketch-based technique for specifying local transfer functions for topology regions using contour trees.
 
+For instance, Guo et al. \cite{guo_wysiwyg_2011} proposed a sketch-based approach that allows direct manipulation of the transfer functions by brushing strokes on top of volume rendered images, which is similar to the operations in painting applications for 2D images.
+Later, Guo and Yuan \cite{guo_local_2013} extended the sketch-based technique for specifying local transfer functions for topology regions using contour trees.
 %Providing exemplar images from specific transfer  functions is another method for assisting the user in transfer function design.
 Wu and Qu \cite{wu_interactive_2007} presented an approach that allows the user to select sample images rendered using predefined transfer functions and generates new transfer functions by fusing multiple features in distinct volume renderings.
-
 Ropinski et al. \cite{ropinski_stroke-based_2008} proposed a stroke-based approach for specifying transfer functions by drawing strokes near silhouettes on a monochromatic view of the volume and generating transfer function components \cite{castro_transfer_1998} that later can be modified and combined to explore the volume.
+
+
+Many of the aforementioned approaches require, amongst other things, a model of what is visible to the user from a particular view direction, in other words the visibility of features in volume data.
+The visibility of a sample refers to the alpha contribution of a sample to the final image, taking into account the degree to which it is occluded by other samples. This can be computed during ray-casting as the difference between the accumulated alpha of a sample and the accumulated alpha of the previous sample along a ray in the view direction \cite{emsenhuber_visibility_2008}.
+Correa et al. presented the general notion of visibility histograms \cite{correa_visibility_2011} which represent the distribution of visibility over intensity ranges in a volume rendering image.
+Wang et al. \cite{wang_efficient_2011} extended visibility histograms to feature visibility histograms for measuring the influence of features on the resultant volume rendered images.
+Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives features at a screen position with the highest visibility along a ray and exploited this information for volume picking.
+
 
 
 %%% MOVE TO CONCLUSIONS
@@ -303,7 +307,7 @@ Ropinski et al. \cite{ropinski_stroke-based_2008} proposed a stroke-based approa
 
 In this section, we define a novel concept called the \emph{Relative Visibility Histogram}, which is used as mechanism for allowing users to select a subset of a 3D volume dataset based on a selection in a 2D rendered view of the data. This is a key component that facilitates the two techniques, presented in subsequent sections, for intuitively manipulating transfer functions in volume rendering.
 
-A visibility histogram \cite{correa_visibility_2011} represents the visibility distribution of all voxels in the viewport when rendered from a given view, in other words how visible any voxel is, given its opacity and the degree to which it is occluded by other voxels in the view direction. We will use the more specific term \emph{Global visibility histogram}, $ H $, to describe such a distribution and define a subset of this, a \emph{Local visibility histogram}, $ H_{L} $,  as a histogram representating the local visibility distribution for the voxels that contribute to a region of interest (ROI) in the rendered image e.g. for a rectangular ROI on screen, this would be all the voxels that lie in the frustum extended by the rectangle. Furthermore we introduce the concept of a Relative Visibility Histogram, derived from the former which is defined as the difference between $ H_{L} $ and $ H $ divided by the maximum of the absolute value in the difference, i.e.
+A visibility histogram \cite{correa_visibility_2011} represents the visibility distribution of all voxels in the viewport when rendered from a given view, in other words how visible any voxel is, given its opacity and the degree to which it is occluded by other voxels in the view direction. We will use the more specific term \emph{Global visibility histogram}, $ H $, to describe such a distribution and  \emph{Local visibility histogram}, $ H_{L} $,  to describe the histogram representating the local visibility distribution for the voxels that contribute to a region of interest (ROI) in the rendered image e.g. for a rectangular ROI on screen, this would be all the voxels that lie in the frustum extended by the rectangle. Furthermore we introduce the concept of a Relative Visibility Histogram, derived from the former which is defined as the difference between $ H_{L} $ and $ H $ divided by the maximum of the absolute value in the difference, i.e.
 %$ H_{R}=H_{r}/max(abs(H_{r})) $, where $ H_{r}=H_{L}-H$.
 \[
 H_{R}=H_{r}/max(abs(H_{r}))
@@ -311,7 +315,7 @@ H_{R}=H_{r}/max(abs(H_{r}))
 where $ H_{r}=H_{L}-H$.
 The relative visibility histogram is scaled to the range $ [-1,1] $ by dividing by the maximum absolute value in the histogram. 
 
-The purpose of the relative visibility histogram is as follows: firstly the local $ H_L $ component captures the dominant intensities in the  ROI. Secondly, the subtraction and normalization against the global context captures a representation of which intensities are particularly strongly distributed within the ROI and not elsewhere in the view. We posit that when a user selects any particular ROI to select a subset of the volume, there is a strong likelihood that they will choose an area that contains a high number of voxels of the intensity ranges that they are interested in and that stands out as clearly dominated by that intensity range compared to the rest of the view. 
+The purpose of the relative visibility histogram is as follows: firstly the local $ H_L $ component captures the dominant intensities in the  ROI. Secondly, the subtraction and normalization against the global context captures a representation of which intensities are particularly strongly distributed within the ROI and not elsewhere in the view. Essentially, we assume that when a user selects any particular ROI to select a subset of the volume, there is a strong likelihood that they will choose an area that contains a high number of voxels of the intensity ranges that they are interested in and that stands out as clearly dominated by that intensity range compared to the rest of the view. 
 
 
 An example is illustrated in Figure 1 and 2.
