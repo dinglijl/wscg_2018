@@ -177,9 +177,18 @@ Compared to other similar techniques, our approach is relatively lightweight, re
 
 \section{Related Work}
 
+Transfer function specification is an essential part of the volume visualization pipeline.
+%A one-dimensional transfer function is a mapping from scalar values to color and alpha values.
+The specification is often achieved by a trial-and-error process, which involves a significant amount of tweaking of colors and opacity values, and the resultant visualization largely depends on how well the transfer function captures features of interest \cite{kniss_multidimensional_2002}.
+%However, it is non-trivial to obtain an effective transfer function. The specification is often achieved by a trial-and-error process, which involves a significant amount of tweaking of color and opacity.
+
 The visibility of a sample refers to the alpha contribution of a sample to the final image, taking into account the degree to which it is occluded by other samples. This can be computed during ray-casting as the difference between the accumulated alpha of a sample and the accumulated alpha of the previous sample along a ray in the view direction \cite{emsenhuber_visibility_2008}.
 Correa et al. presented the general notion of visibility histograms \cite{correa_visibility_2011} which represent the distribution of visibility over intensity ranges in a volume rendering image.
+Wang et al. \cite{wang_efficient_2011} extended visibility histograms to feature visibility histograms for measuring the influence of features on the resultant volume rendered images.
 Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives features at a screen position with the highest visibility along a ray and exploited this information for volume picking.
+
+%Cai et al. \cite{cai_automatic_2013} described a method to derive opacity transfer functions by minimizing the Jensen-Shannon divergence between the observed visibility distribution and a user-defined target distribution. The target distribution can be defined using Gaussian function weighting.
+%Qin et al. \cite{qin_voxel_2015} proposed using a Gaussian mixture model to build a visibility distribution function and optimize the opacity transfer functions by minimizing the distance between the desired and actual voxel visibility distribution.
 
 %Guo et al. \cite{guo_wysiwyg_2011} proposed a sketch-based manipulation technique for volume visualization based on clustering of attributes such as depth, visibility, alpha and intensity.
 Guo et al. \cite{guo_wysiwyg_2011} proposed a sketch-based approach that allows direct manipulation of the transfer functions by brushing strokes on top of volume rendered images, which is similar to the operations in painting applications for 2D images.
@@ -392,7 +401,7 @@ Henceforth, this smoothed histogram $ H_{G} $ will be referred to as the relativ
 
 \section{Color and Alpha Editing} \label{color_and_alpha_editing}
 
-When a user selects a region of interest on the rendered image of the volume, a single pass of volume ray casting is done to calculate the global visibility histogram for the whole volume and the local visibility histogram for the selected region in the view-port. From this we calculate the relative visibility histogram, which provides a measure of visible materials within the selected region. This is used to infer features that the user intends to edit in the visualization. More precisely, $H_G$ is used as a weighting function to blend the colors or opacities in the original transfer function with a user-selected target color or alpha value.
+When a user selects a region of interest on the rendered image of the volume, a single pass of volume ray casting is done to calculate the global visibility histogram for the whole volume and the local visibility histogram for the selected region in the view-port. From this we calculate the relative visibility histogram, which provides a measure of visible materials within the selected region. This is used to infer features that the user intends to edit in the visualization. More precisely, $H_G$ is used as a weighting function to blend the colors or opacity values in the original transfer function with a user-selected target color or alpha value.
 
 The user-selected target color is blended with the original transfer function for intensity ranges that have positive values in the relative visibility histogram as below:
 \[
@@ -884,7 +893,7 @@ We observed that the transfer function components in \autoref{fig:vortex_merged}
 \end{figure}
 
 \section{Conclusion}
-In this paper, we introduce relative visibility histograms for inferring user intentions and present interactive techniques for editing colors and opacities in transfer functions for volume visualization. We describe a direct color and alpha editing technique as well as a higher level technique that involves creating and merging transfer function components which represents features in the volume rendering.
+In this paper, we introduce relative visibility histograms for inferring user intentions and present interactive techniques for editing colors and opacity values in transfer functions for volume visualization. We describe a direct color and alpha editing technique as well as a higher level technique that involves creating and merging transfer function components which represents features in the volume rendering.
 
 %These approaches are lightweight compared to similar techniques and performs in real-time.
 
