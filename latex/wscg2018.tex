@@ -635,7 +635,7 @@ where $ w_{j} $ ($ w_{j} \geq 0 $) is the weight for transfer function component
 \autoref{fig:nucleon_merged} shows the results of merging the transfer function components in \autoref{fig:nucleon_features} and \autoref{fig:nucleon_segments} respectively.
 
 Note that there are ``wood grain'' artifacts in the volume rendered image in \autoref{fig:nucleon_merged} (a), especially in the red feature. The artifacts are due to the gaps in the transfer function components, as shown in \autoref{fig:nucleon_merged} (c).
-In contrast, the volume rendered image in \autoref{fig:nucleon_merged} (b) does not has noticeable artifacts, because the transfer function components in \autoref{fig:nucleon_merged} (d) are smoother.
+In contrast, the volume rendered image in \autoref{fig:nucleon_merged} (b) does not have noticeable artifacts, because the transfer function components in \autoref{fig:nucleon_merged} (d) are smoother.
 
 There may be overlaps between transfer function components. Two methods for deciding the color of the overlaps in the merged transfer functions are described below.
 
@@ -655,11 +655,11 @@ Hence, the color function $ C_{i} $ is defined by
 \]
 where $ W_{j} $ is the normalized weight of transfer function component $ F_{j} $ and $ c_{j} $ is the color of $ F_{j} $, and $ n $ is the number of transfer function components.
 
-Using this color blending method, new colors that do not exist in the settings of transfer function components may be introduced due to the blending of colors of overlapping transfer function components.
-Moreover, a feature, represented by a transfer function component, may have various colors in the volume rendering.
+Using this method, new colors that do not exist in the settings of transfer function components may be introduced due to the blending of colors of overlapping transfer function components.
+Moreover, a feature, represented by a transfer function component, may be represented by a range of various colors in the final rendered.
 
 \subsubsection{Using colors of the dominant components}
-In some cases, using a single color for a feature is preferable for better distinction of features in the volume rendering.
+In some cases, using a single color per feature is preferable for better distinction of features in the volume rendering.
 
 The second method is using the color of the visually dominant transfer function component as the merged color.
 
