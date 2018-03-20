@@ -135,7 +135,7 @@
 
 \begin{abstract}
 \noindent
-In this paper, we present an interactive approach for intuitively editing colors and opacity values in transfer functions for volume visualization. We introduce the concept of a relative visibility histogram, which represents the difference between the global visibility distribution across the full volume and the local visibility distribution within a user-selected region in the viewport. From this measure, we can infer what subset of the 3D volume the user intends to select when they click on a region in the 2D rendered image of the dataset, and use this to modify relevant parts of the transfer function.
+In this paper, we present an interactive approach for intuitively editing colors and opacity values in transfer functions for volume visualization. We introduce the concept of a relative visibility histogram, which represents the difference between the global visibility distribution across the full volume and the local visibility distribution within a user-selected region in the viewport. From this measure, we can infer what subset of the 3D volume the user intends to select when they click on a region in the 2D rendered image of the data set, and use this to modify relevant parts of the transfer function.
 %when they click on a specific region in the viewport and use this result to directly modify the relevant parts of the transfer function.
 We use this selection mechanism for two alternative purposes. The first is to allow output-driven editing of the transfer function, whereby a user can change the opacities and colors of features without directly having to manipulate the transfer function itself.
 The second is to extract visually dominant features in any user-selected region of interest, so that the user may individually edit their appearance and then merge these to create new transfer functions.
@@ -164,7 +164,7 @@ Volume rendering, transfer function, visibility, visibility histograms
 
 A recurring challenge in volume visualization is defining effective transfer functions (TF), which assign color and opacity (alpha value) to specific data ranges for visualization. Due to the non-linear relationship between the transfer function and the resultant rendering, the process of editing transfer functions is often counter-intuitive, typically necessitating a trial-and-error process. This may be addressed using an output sensitive approach where the user can more directly control the appearance of the visualization, without explicit knowledge of the transfer function. 
 
-In this paper, we propose a technique which enables us to infer a user's intended changes to the visualization, when they click or select a region in the rendered image of a 3D volume dataset. This is done by weighting the data in the selected region based on the proportion of materials visible to the user within that region. We introduce the concept of a \emph{relative visibility histogram}, derived from the relationship between the global visibility and the local visibility of data in the user-selected region.
+In this paper, we propose a technique which enables us to infer a user's intended changes to the visualization, when they click or select a region in the rendered image of a 3D volume data set. This is done by weighting the data in the selected region based on the proportion of materials visible to the user within that region. We introduce the concept of a \emph{relative visibility histogram}, derived from the relationship between the global visibility and the local visibility of data in the user-selected region.
 Based on this weighting, the user can directly modify colors and opacities in the rendered image of the volume data, in a manner analogous to painting a 3D scene.
 In addition, we introduce an automated technique for creating transfer function components from relative visibility histograms to represent features of interest in the selected regions.
 %using relative visibility histograms.
@@ -208,7 +208,7 @@ Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives 
 
 
 %%% MOVE TO CONCLUSIONS
-%Our color and alpha editing approach described in \autoref{color_and_alpha_editing} has a similar interaction manner to the approach by Guo et al. \cite{guo_wysiwyg_2011}, in terms of emphasizing features and applying colors to features. However, the feature definition in the approach by Guo et al. relies on clustering of four attributes, i.e. depth, visibility, alpha and intensity. The clustering of attributes of voxels may be computationally heavy particularly for large volume datasets.
+%Our color and alpha editing approach described in \autoref{color_and_alpha_editing} has a similar interaction manner to the approach by Guo et al. \cite{guo_wysiwyg_2011}, in terms of emphasizing features and applying colors to features. However, the feature definition in the approach by Guo et al. relies on clustering of four attributes, i.e. depth, visibility, alpha and intensity. The clustering of attributes of voxels may be computationally heavy particularly for large volume data sets.
 %In contrast, our color and alpha editing approach applies the opacity and color to the relevant intensity ranges of the transfer function based on relative visibility histograms, which is a lightweight technique.
 
 %Our transfer function components approach discussed in \autoref{transfer_function_components} is similar to the work by Ropinski et al. \cite{ropinski_stroke-based_2008} in how the transfer function components are modified and merged to create new transfer functions.
@@ -240,7 +240,7 @@ Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives 
 %
 %Local WYSIWYG volume visualization \cite{guo_local_2013}
 %
-%%Visualization of boundaries in volumetric datasets through a what material you pick is what boundary you see approach \cite{li_visualization_2016}
+%%Visualization of boundaries in volumetric data sets through a what material you pick is what boundary you see approach \cite{li_visualization_2016}
 %
 %volume picking techniques such as \cite{wiebel_wysiwyp:_2012} and editing techniques such as \cite{guo_wysiwyg_2011} and \cite{guo_local_2013}.
 
@@ -302,13 +302,13 @@ Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives 
 		(d) %		\caption{Smoothed relative visibility histogram}
 		\label{fig:relative_visibility_histogram_with_gaussian}
 	\end{minipage}
-	\caption{(a) Global Visibility Histogram of dataset shown in \autoref{fig:nucleon_ori}(a); (b) Local Visibility Histogram of selected region; (c) Relative Visibility Histogram; (d) Relative visibility histogram after smoothing}
+	\caption{(a) Global Visibility Histogram of data set shown in \autoref{fig:nucleon_ori}(a); (b) Local Visibility Histogram of selected region; (c) Relative Visibility Histogram; (d) Relative visibility histogram after smoothing}
 	\label{fig:nucleon_hist}
 \end{figure}
 
 \section{Relative Visibility Histograms}
 
-In this section, we define a novel concept called the \emph{Relative Visibility Histogram}, which is used as a mechanism for allowing users to select a subset of a 3D volume dataset based on a selection in a 2D rendered view of the data. This is a key component that facilitates the two techniques, presented in subsequent sections, for intuitively manipulating transfer functions in volume rendering.
+In this section, we define a novel concept called the \emph{Relative Visibility Histogram}, which is used as a mechanism for allowing users to select a subset of a 3D volume data set based on a selection in a 2D rendered view of the data. This is a key component that facilitates the two techniques, presented in subsequent sections, for intuitively manipulating transfer functions in volume rendering.
 
 A visibility histogram \cite{correa_visibility_2011} represents the visibility distribution of all voxels in the viewport when rendered from a given view, in other words, how visible any voxel is, given its opacity and the degree to which it is occluded by other voxels in the view direction. We will use the more specific term \emph{Global visibility histogram}, $ H $, to describe such a distribution and  \emph{Local visibility histogram}, $ H_{L} $,  to describe the histogram representing the local visibility distribution for the voxels that contribute to a region of interest (ROI) in the rendered image, e.g., for a rectangular ROI on screen, this would be all the voxels that lie in the frustum extended by the rectangle. Furthermore, we introduce the concept of a Relative Visibility Histogram, derived from the former which is defined as the difference between $ H_{L} $ and $ H $ divided by the maximum of the absolute value in the difference, i.e.,
 %$ H_{R}=H_{r}/max(abs(H_{r})) $, where $ H_{r}=H_{L}-H$.
@@ -322,7 +322,7 @@ The purpose of the relative visibility histogram is as follows: firstly the loca
 
 
 An example is illustrated in Figure 1 and 2.
-\autoref{fig:nucleon_ori} shows a nucleon dataset, its associated transfer function and sample modifications using our technique.
+\autoref{fig:nucleon_ori} shows a nucleon data set, its associated transfer function and sample modifications using our technique.
 The global visibility histogram is shown in 
 \autoref{fig:nucleon_hist}(a) and the local visibility histogram for the region of interest (the rectangle in inverted color) is shown in \autoref{fig:nucleon_hist}(b). The relative visibility histogram
 is show in \autoref{fig:nucleon_hist}(c).
@@ -443,7 +443,7 @@ A_{i}-H_{G}(i)(0-A_{i}) & \text{otherwise}
 \end{cases}
 \]
 
-Note that the color blending and alpha blending operations can be applied separately. \autoref{fig:nucleon_ori}(c) displays the result of only applying the color blending to the volume rendering of the nucleon dataset in \autoref{fig:nucleon_ori}(a), and \autoref{fig:nucleon_ori}(d) displays the result of only applying the alpha blending to the original.
+Note that the color blending and alpha blending operations can be applied separately. \autoref{fig:nucleon_ori}(c) displays the result of only applying the color blending to the volume rendering of the nucleon data set in \autoref{fig:nucleon_ori}(a), and \autoref{fig:nucleon_ori}(d) displays the result of only applying the alpha blending to the original.
 
 Furthermore, as the blending process is fast, any changes can be applied by the user iteratively, analogous to a paintbrush-like tool for a large number successive of operations.
 
@@ -455,7 +455,7 @@ In addition to low-level output-driven editing of the transfer function, the rel
 
 As previously discussed, relative visibility histograms reveal what intensity ranges are concentrated in the view frustum behind a selected 2D viewport region. The visually dominant features in the selected region can be represented by \emph{transfer function components} proportional to the positive parts of relative visibility histograms.
 
-A discrete set of such component transfer functions can be composed into a new transfer function for the full dataset, and then the colors and opacity values of individual components can be separately modified.
+A discrete set of such component transfer functions can be composed into a new transfer function for the full data set, and then the colors and opacity values of individual components can be separately modified.
 
 %This method allows the user to edit the volume visualization on a feature level.
 
@@ -685,14 +685,14 @@ We have implemented our approach with a GPU-Raycast volume renderer with the vis
 Similarly, \autoref{fig:Nucleon_2}(right) shows the result of applying yellow and adjusting alpha. Here, the intensity ranges in the middle have become orange after blending with the color yellow. 
 In both cases, the alpha of the relevant parts of the transfer function is increased and the alpha of the less relevant parts is decreased in order to emphasize the materials of interest.
 
-Figure \ref{fig:CT-knee_all}(left) shows show a rendered image of a CT-Knee dataset with a selected region over the bone. Figure \ref{fig:CT-knee_all}(right) shows the image and the transfer function after applying a blue color and alpha adjustment. The bone material becomes mostly blue and is emphasized due to increased opacity, while the materials around the bone with lower relative intensity ranges are de-emphasized.
+Figure \ref{fig:CT-knee_all}(left) shows show a rendered image of a CT-Knee data set with a selected region over the bone. Figure \ref{fig:CT-knee_all}(right) shows the image and the transfer function after applying a blue color and alpha adjustment. The bone material becomes mostly blue and is emphasized due to increased opacity, while the materials around the bone with lower relative intensity ranges are de-emphasized.
 
-Figure \ref{fig:Vortex_all} shows results of enhancing one time-step of a turbulent vortex dataset.
+Figure \ref{fig:Vortex_all} shows results of enhancing one time-step of a turbulent vortex data set.
 \autoref{fig:Vortex_all}(a) shows the rendered image and original transfer function.
 \autoref{fig:Vortex_all}(b) shows a clear visualization, and respective TF, of the materials of interest blended with blue and emphasized with higher alpha.
 Similarly, \autoref{fig:Vortex_all}(c) shows the materials of interest blended with yellow and emphasized with higher alpha.
 
-The examples show that the technique can be applied effectively to a range of different datasets and transfer functions. Although we only show single step examples due to space constraints, it should be noted that changes can be applied by the user iteratively, analogous to a paintbrush-like tool for a large number successive of operations.
+The examples show that the technique can be applied effectively to a range of different data sets and transfer functions. Although we only show single step examples due to space constraints, it should be noted that changes can be applied by the user iteratively, analogous to a paintbrush-like tool for a large number successive of operations.
 
 \begin{figure}
 	\centering
@@ -720,7 +720,7 @@ The examples show that the technique can be applied effectively to a range of di
 		%\caption{TF of \autoref{fig:CT-Knee_blue}}
 		\label{fig:tf_CT-Knee_blue}
 	\end{minipage}
-	\caption{Left: CT-Knee dataset and basic TF; Right: Blue applied and opacity enhanced for selected region}
+	\caption{Left: CT-Knee data set and basic TF; Right: Blue applied and opacity enhanced for selected region}
 	\label{fig:CT-knee_all}
 	
 \end{figure}
@@ -775,7 +775,7 @@ The examples show that the technique can be applied effectively to a range of di
 	%	\caption{vortex yellow}
 	%	\label{fig:vortex_3_yellow}
 	%\end{minipage}
-	\caption{(a)Turbulent vortex dataset and initial TF; (b)Blue applied to selected material and opacity enhanced; (c) Yellow applied and opacity enhanced.}
+	\caption{(a)Turbulent vortex data set and initial TF; (b)Blue applied to selected material and opacity enhanced; (c) Yellow applied and opacity enhanced.}
 	\label{fig:Vortex_all}
 \end{figure}
 
@@ -784,7 +784,7 @@ The examples show that the technique can be applied effectively to a range of di
 %\autoref{fig:nucleon_features} (a) and (b) show the two selected regions on the volume rendering. \autoref{fig:nucleon_features} (c) and (d) show the two transfer function components which represents the relative visibility distributions of features in the two user-selected regions respectively. Both user-selected regions are rectangular and the region sizes can be modified according to the user's need.
 
 \subsection{TF-components editing}
-\autoref{fig:vortex_features}, \autoref{fig:vortex_segments} and \autoref{fig:vortex_merged} show results of creating and merging transfer function components on the time-step of the turbulent vortex dataset.
+\autoref{fig:vortex_features}, \autoref{fig:vortex_segments} and \autoref{fig:vortex_merged} show results of creating and merging transfer function components on the time-step of the turbulent vortex data set.
 
 \autoref{fig:vortex_features} displays three transfer function components created from a green region, a red region and a purple region, which are rectangular regions highlighted in inverted colors, in the volume rendering respectively.
 In contrast, \autoref{fig:vortex_segments} displays three transfer function components created from three regions based on image segmentation results. The three regions are visual objects with similar colors and are selected by clicking on the same positions as in the regions in \autoref{fig:vortex_features}.
@@ -942,7 +942,7 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 	\includegraphics[width=1\linewidth]{supernova_transfer_function}
 	(e)
 	\end{minipage}
-	\caption{User-selected regions and segments on the rendering of a supernova dataset; (a) \& (b): User-selected regions highlighted in inverted colors; (c) \& (d): User-selected segments highlighted in inverted colors; (e): Initial transfer function}
+	\caption{User-selected regions and segments on the rendering of a supernova data set; (a) \& (b): User-selected regions highlighted in inverted colors; (c) \& (d): User-selected segments highlighted in inverted colors; (e): Initial transfer function}
 	\label{fig:supernova_selection}
 \end{figure}
 
@@ -977,7 +977,7 @@ In this paper, we introduce relative visibility histograms for inferring user in
 
 %These approaches are lightweight compared to similar techniques and performs in real-time.
 
-Our color and alpha editing approach described in \autoref{color_and_alpha_editing} has a similar interaction paradigm to that proposed by Guo et al. \cite{guo_wysiwyg_2011} in terms of emphasizing features and applying colors to features. However, the feature definition in Guo et al.'s approach relies on clustering of four attributes, i.e. depth, visibility, alpha and intensity. The clustering of attributes of voxels may be computationally heavy particularly for large volume datasets.
+Our color and alpha editing approach described in \autoref{color_and_alpha_editing} has a similar interaction paradigm to that proposed by Guo et al. \cite{guo_wysiwyg_2011} in terms of emphasizing features and applying colors to features. However, the feature definition in Guo et al.'s approach relies on clustering of four attributes, i.e. depth, visibility, alpha and intensity. The clustering of attributes of voxels may be computationally heavy particularly for large volume data sets.
 In contrast, our approach identifies relevant intensity ranges of the transfer function based purely on visibility information, thus requiring a much more lightweight approach.
 
 Our transfer function components approach discussed in \autoref{transfer_function_components} is similar to the work by Ropinski et al. \cite{ropinski_stroke-based_2008} in how the transfer function components are modified and merged to create new transfer functions.
@@ -998,7 +998,7 @@ In future, we would like to conduct user studies to evaluate the effectiveness o
 
 %Redacted for anonymous review stage.
 
-The Supernova dataset is made available by Dr. John Blondin at the North Carolina State University through US Department of Energy's SciDAC Institute for Ultrascale Visualization. Other datasets were obtained from the Volume Library courtesy of Stefan Roettger, the Stanford Volume Data archive and the Time-varying data repository at UCDavis. The nucleon dataset was obtained from the free distribution of the Voreen engine. We would like to thank the respective owners for making these datasets available.
+The Supernova data set is made available by Dr. John Blondin at the North Carolina State University through US Department of Energy's SciDAC Institute for Ultrascale Visualization. Other data sets were obtained from the Volume Library courtesy of Stefan Roettger, the Stanford Volume Data archive and the Time-varying data repository at UCDavis. The nucleon data set was obtained from the free distribution of the Voreen engine. We would like to thank the respective owners for making these data sets available.
 
 %This research has been conducted with the financial support of Science Foundation Ireland (SFI) under Grant Number 13/IA/1895.
 
