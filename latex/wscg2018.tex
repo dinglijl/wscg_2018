@@ -442,6 +442,8 @@ A_{i}-H_{G}(i)(0-A_{i}) & \text{otherwise}
 
 Note that the color blending and alpha blending operations can be applied separately. \autoref{fig:nucleon_ori}(c) displays the result of only applying the color blending to the volume rendering of the nucleon data set in \autoref{fig:nucleon_ori}(a), and \autoref{fig:nucleon_ori}(d) displays the result of only applying the alpha blending to the original.
 
+Furthermore, as the blending process is fast any changes can be applied by the user iteratively, analagous to a paintbrush-like tool for a large number successive of operations.
+ 
 \section{Transfer Function Components} \label{transfer_function_components}
 
 %In addition to output-driven editing of the transfer function, we introduce transfer function components, which allow the user to edit the volume visualization on a feature level.
@@ -483,7 +485,7 @@ where $ H_{G}(i) $ is the value of the relative visibility histogram $ H_{G} $ a
 %Compared to selecting regions of geometric shapes,  selecting visual objects in volume rendered images is more desirable for feature specification.
 
 %COMMENT (JOHN): "visual object" is somewhat vague, need to clarify this.
-Heretofore, we have assumed a rectangular region of interest centered on a point that the user clicks on the screen. Whilst this is a reasonable representation of the user's interest for the purposes of low-level iterative editing proposed in the previous sections, a more robust representation of the users intentions may be obtained by a more generalized representation of this region. We propose that this could be done by segmenting the rendered contiguous visual objects in 2D (we avoid using the term ``feature'' here to avoid confusion with the transfer function features discussed previously).
+Heretofore, we have assumed a rectangular region of interest centered on a point such as the location of the mouse cursor when a user clicks on the screen. Whilst this is a reasonable representation of the user's interest for the purposes of low-level iterative editing proposed in the previous sections, a more robust representation of the users intentions may be obtained by a more generalized representation of this region. We propose that one alternative of the region of interest can be obtained by segmenting the rendered image into contiguous visual objects in 2D (we avoid using the term ``feature'' here to avoid confusion with the transfer function features discussed previously).
 
 In order to achieve visual object selection, image segmentation is performed on volume rendered images and the resultant segments are stored as individual masks for object selection. More specifically, a GPU accelerated k-means clustering implementation is used to accomplish interactive segmentation of volume rendered images. The distance metric of the pixels is Euclidean distance in the RGB color space.
 
