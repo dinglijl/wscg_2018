@@ -781,7 +781,7 @@ The examples show that the technique can be applied effectively to a range of di
 %\autoref{fig:nucleon_features} (a) and (b) show the two selected regions on the volume rendering. \autoref{fig:nucleon_features} (c) and (d) show the two transfer function components which represents the relative visibility distributions of features in the two user-selected regions respectively. Both user-selected regions are rectangular and the region sizes can be modified according to the user's need.
 
 \subsection{TF-components editing}
-\autoref{fig:vortex_features}, \autoref{fig:vortex_segments}, \autoref{fig:vortex_merged} and \autoref{fig:vortex_merged_2} show results of creating and merging transfer function components on the time-step of the turbulent vortex data set.
+\autoref{fig:vortex_features}, \autoref{fig:vortex_segments} and \autoref{fig:vortex_merged} show results of creating and merging transfer function components on the time-step of the turbulent vortex data set.
 
 \autoref{fig:vortex_features} displays three transfer function components created from a green region, a red region and a purple region, which are rectangular regions highlighted in inverted colors, in the volume rendering respectively.
 In contrast, \autoref{fig:vortex_segments} displays three transfer function components created from three regions based on image segmentation results. The three regions are visual objects with similar colors and are selected by clicking on the same positions as in the regions in \autoref{fig:vortex_features}.
@@ -790,9 +790,13 @@ In contrast, \autoref{fig:vortex_segments} displays three transfer function comp
 Similarly, \autoref{fig:vortex_merged} (b) and (e) display the volume rendered image and the transfer function created from merging the three transfer function components in \autoref{fig:vortex_segments} with color blending, and \autoref{fig:vortex_merged} (c) and (f) display the results of merging the three transfer function components in \autoref{fig:vortex_segments} using colors of dominant components.
 In \autoref{fig:vortex_merged}, the three transfer function components are merged with weights \{2,1,0.2\}, so that the purple feature is de-emphasized, the green feature is emphasized, and the red feature remains the same level of opacity.
 
-We observed that the transfer function components in \autoref{fig:vortex_merged} (e) and (f), which are derived from segments, have wider intensity ranges than those in \autoref{fig:vortex_merged} (d), which are derived from rectangular regions.
+%We observed that the transfer function components in \autoref{fig:vortex_merged} (e) and (f), which are derived from segments, have wider intensity ranges than those in \autoref{fig:vortex_merged} (d), which are derived from rectangular regions.
 
-\autoref{fig:vortex_merged_2} displays the results of merging two transfer function components, i.e. the green feature and the red feature, with weights \{2,1\} and setting the colors of the two components to blue and orange respectively.
+%\autoref{fig:vortex_merged_2} displays the results of merging two transfer function components, i.e. the green feature and the red feature, with weights \{2,1\} and setting the colors of the two components to blue and orange respectively.
+
+\autoref{fig:supernova_merge} displays the results of merging two transfer function components, i.e. the red feature and the green feature, with weights \{1,1\}. The transfer function components are created from the user-selected regions in \autoref{fig:supernova_selection} (a) and (b), and the user-selected segments in \autoref{fig:supernova_selection} (c) and (d) respectively. \autoref{fig:supernova_selection} (e) shows the initial transfer function used for volume rendering.
+
+From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed that the transfer function components created from segments are smoother and have wider intensity ranges than those created from rectangular regions.
 
 \begin{figure}
 	\centering
@@ -868,44 +872,101 @@ We observed that the transfer function components in \autoref{fig:vortex_merged}
 		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_green_red_purple}
 		(f)
 	\end{minipage}
-	\caption{Merge 3 features with weights \{2,1,0.2\}; (a) and (d): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_features}; (b) and (e): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} with color blending; (c) and (f): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} using colors of dominant components}
+	\caption{Merge 3 features with weights \{2, 1, 0.2\} and colors from peaks of TF components; (a) and (d): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_features}; (b) and (e): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} with color blending; (c) and (f): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} using colors of dominant components}
 	\label{fig:vortex_merged}
+\end{figure}
+
+%\begin{figure}
+%	\centering
+%	\begin{minipage}{.16\textwidth}
+%		\centering
+%		\includegraphics[width=1\linewidth]{crop/vortex_merged_green_red}
+%		(a)
+%	\end{minipage}~
+%	\begin{minipage}{.16\textwidth}
+%		\centering
+%		\includegraphics[width=1\linewidth]{crop/vortex_merged_segment_blend_green_red}
+%		(b)
+%	\end{minipage}~
+%	\begin{minipage}{.16\textwidth}
+%		\centering
+%		\includegraphics[width=1\linewidth]{crop/vortex_merged_segment_green_red}
+%		(c)
+%	\end{minipage}
+%	\begin{minipage}{.16\textwidth}
+%		\centering
+%		\includegraphics[width=1\linewidth]{tf_vortex_merged_green_red}
+%		(d)
+%	\end{minipage}~
+%	\begin{minipage}{.16\textwidth}
+%		\centering
+%		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_blend_green_red}
+%		(e)
+%	\end{minipage}~
+%	\begin{minipage}{.16\textwidth}
+%		\centering
+%		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_green_red}
+%		(f)
+%	\end{minipage}
+%	\caption{Merge the green feature and the red feature with weights \{2,1\} and set colors of the two features to blue and orange respectively; (a) and (d): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_features}; (b) and (e): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} with color blending; (c) and (f): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} using colors of dominant components}
+%	\label{fig:vortex_merged_2}
+%\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{minipage}{.16\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{crop/supernova_selection_red}
+		(a)
+	\end{minipage}~
+	\begin{minipage}{.16\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{crop/supernova_selection_green}
+		(b)
+	\end{minipage}
+	\begin{minipage}{.16\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{crop/supernova_segment_red}
+		(c)
+	\end{minipage}~
+	\begin{minipage}{.16\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{crop/supernova_segment_green}
+		(d)
+	\end{minipage}~
+	\begin{minipage}{.16\textwidth}
+	\centering
+	\includegraphics[width=1\linewidth]{supernova_transfer_function}
+	(e)
+	\end{minipage}
+	\caption{User-selected regions and segments on the rendering of a supernova data set; (a) \& (b): User-selected regions highlighted in inverted colors; (c) \& (d): User-selected segments highlighted in inverted colors; (e): Initial transfer function}
+	\label{fig:supernova_selection}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\begin{minipage}{.16\textwidth}
 		\centering
-		\includegraphics[width=1\linewidth]{crop/vortex_merged_green_red}
+		\includegraphics[width=1\linewidth]{crop/supernova_merged_red_green}
 		(a)
 	\end{minipage}~
 	\begin{minipage}{.16\textwidth}
 		\centering
-		\includegraphics[width=1\linewidth]{crop/vortex_merged_segment_blend_green_red}
+		\includegraphics[width=1\linewidth]{crop/supernova_merged_segment_red_green}
 		(b)
-	\end{minipage}~
+	\end{minipage}
 	\begin{minipage}{.16\textwidth}
 		\centering
-		\includegraphics[width=1\linewidth]{crop/vortex_merged_segment_green_red}
+		\includegraphics[width=1\linewidth]{tf_supernova_merged_red_green}
 		(c)
-	\end{minipage}
+	\end{minipage}~
 	\begin{minipage}{.16\textwidth}
 		\centering
-		\includegraphics[width=1\linewidth]{tf_vortex_merged_green_red}
+		\includegraphics[width=1\linewidth]{tf_supernova_merged_segment_red_green}
 		(d)
-	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_blend_green_red}
-		(e)
-	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_green_red}
-		(f)
 	\end{minipage}
-	\caption{Merge the green feature and the red feature with weights \{2,1\} and set colors of the two features to blue and orange respectively; (a) and (d): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_features}; (b) and (e): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} with color blending; (c) and (f): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} using colors of dominant components}
-	\label{fig:vortex_merged_2}
+	\caption{Merge 2 features with weights \{1, 1\} and colors from peaks of TF components; (a) \& (c): Volume rendering and TF from merging the TF components in \autoref{fig:supernova_selection} (a) and (b); (b) \& (d): Volume rendering and TF from merging the TF components in \autoref{fig:supernova_selection} (c) and (d)}
+	\label{fig:supernova_merge}
 \end{figure}
 
 \section{Conclusion}
@@ -932,7 +993,9 @@ In future, we would like to conduct user studies to evaluate the effectiveness o
 
 \section{Acknowledgments}
 
-Redacted for anonymous review stage.
+%Redacted for anonymous review stage.
+
+The Supernova data set is made available by Dr. John Blondin at the North Carolina State University through US Department of Energy's SciDAC Institute for Ultrascale Visualization. Other data sets were obtained from the Volume Library courtesy of Stefan Roettger, the Stanford Volume Data archive and the Time-varying data repository at UCDavis. The nucleon data set was obtained from the free distribution of the Voreen engine. We would like to thank the respective owners for making these data sets available.
 
 %This research has been conducted with the financial support of Science Foundation Ireland (SFI) under Grant Number 13/IA/1895.
 
