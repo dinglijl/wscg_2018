@@ -925,6 +925,10 @@ In some cases, such as a complex flow visualization, it may be difficult draw a 
 
 In our transfer function components approach, only a region inside the feature of interest is needed for creating a transfer function component to represent the feature. Moreover, apart from selecting a rectangular region around the mouse position, the user can also select segments generated from k-means clustering in image space. The segments often cover more pixels and thus lead to smoother transfer function components.
 
+However, the proposed techniques are subject to the limitations of 1D transfer functions, e.g. it is not possible to separate features of interest that overlap in the 1D transfer function domain.
+Both the color and alpha editing and transfer function components techniques are based on relative visibility histograms, which indicate the difference between the global visibility distribution across the volume and the local visibility distribution within the user-selected region. Therefore, only materials that are visible in the initial transfer function can be captured and edited by the proposed techniques.
+
+In future, we would like to conduct user studies to evaluate the effectiveness of the proposed techniques, and examine the feasibility of using other color spaces and image segmentation techniques for better selection of visual objects in image space.
 
 \section{Acknowledgments}
 
