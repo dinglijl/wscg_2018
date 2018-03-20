@@ -135,9 +135,11 @@
 
 \begin{abstract}
 \noindent
-In this paper, we present an interactive approach for intuitively editing colors and opacity values in transfer functions for volume visualization. We introduce the concept of a relative visibility histogram, which represents the difference between the global visibility distribution across the full volume and the local visibility distribution within a user-selected region in the viewport. From this measure we can infer what the user intends to select when they click on a specific region in the viewport and use this result to directly modify the relevant parts of the transfer function.
-In addition to direct editing of the transfer function, we also introduce transfer function components which represent the visually dominant features in the user-selected regions.
-The user can manipulate the colors and opacity values of the components and merge them to create new transfer functions.
+In this paper, we present an interactive approach for intuitively editing colors and opacity values in transfer functions for volume visualization. We introduce the concept of a relative visibility histogram, which represents the difference between the global visibility distribution across the full volume and the local visibility distribution within a user-selected region in the viewport. From this measure, we can infer what subset of the 3D volume the user intends to select when they click on a region in the 2D rendered image of the dataset, and use this to modify relevant parts of the transfer function.
+%when they click on a specific region in the viewport and use this result to directly modify the relevant parts of the transfer function.
+We use this selection for two use-cases. The first is to allow output-driven editing of the transfer function, and the second is to extract visually dominant features in any user-selected region of interest and to merge and edit these to create new transfer functions.
+%In addition to direct editing of the transfer function, we also introduce transfer function components which represent the visually dominant features in the user-selected regions.
+%The user can manipulate the colors and opacity values of the components and merge them to create new transfer functions.
 Our approach is lightweight compared to similar techniques and performs in real-time.
 
 \end{abstract}
@@ -989,9 +991,11 @@ In our transfer function components approach, only a region inside the feature o
 However, the proposed techniques are subject to the limitations of 1D transfer functions, e.g. it is not possible to separate features of interest that overlap in the 1D transfer function domain.
 Both the color and alpha editing and transfer function components techniques are based on relative visibility histograms, which indicate the difference between the global visibility distribution across the volume and the local visibility distribution within the user-selected region. Therefore, only materials that are visible in the initial transfer function can be captured and edited by the proposed techniques.
 
-In future, we would like to conduct user studies to evaluate the effectiveness of the proposed techniques, and examine the feasibility of using other color spaces and image segmentation techniques for better selection of visual objects in image space.
+In future, we would like to conduct user studies to evaluate the effectiveness of the proposed techniques, in particular with expert users in specific domains that use volume data. We believe our approach is particularly suited for tasks where their is no clear a priori search target, such as might be the case in some fluid visualizations. We used some standard approaches to some of the component mechanisms of our solution and further study is required in  
 
-\section{Acknowledgments}
+using other color spaces and image segmentation techniques for better selection of visual objects in image space.
+
+\section{Acknowledgements}
 
 %Redacted for anonymous review stage.
 
