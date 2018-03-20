@@ -398,7 +398,7 @@ Henceforth, this smoothed histogram $ H_{G} $ will be referred to as the relativ
 %The color and alpha blending operations aim to provide an intuitive means for modifying and emphasizing visible materials of interest %based on the user preference information derived from the relative visibility histogram.
 %The color blending applies a user-selected color to the intensity ranges with positive values in the relative visibility histogram, and the alpha blending increases the alpha of intensity ranges with positive relative visibility values and decreases the alpha of intensity ranges with negative relative visibility values.
 
-%After the user has selected a region of interest on the volume rendering image, a pass of volume ray casting is done to calculate the global visibility histogram for the whole volume rendering image and the local visibility histogram for the selected region in the current view port. Subsequently, the relative visibility histogram is computed from the local and global visibility histograms for use in the color and alpha blending process.
+%After the user has selected a region of interest on the volume rendering image, a pass of volume ray casting is done to calculate the global visibility histogram for the whole volume rendering image and the local visibility histogram for the selected region in the current viewport. Subsequently, the relative visibility histogram is computed from the local and global visibility histograms for use in the color and alpha blending process.
 
 %Let $ H_{G}(i) $ denote the relative visibility at intensity $ i $ in $ H_{G} $, $ C_{s} $ denote the user-selected color and $ C_{i} $ denote the color of intensity $ i $ in the transfer function.
 
@@ -407,7 +407,7 @@ Henceforth, this smoothed histogram $ H_{G} $ will be referred to as the relativ
 
 The first application of the relative-visibility histogram is in allowing users to manipulate the visualization with no explicit knowledge of the transfer function. In this use-case the user can simply needs to select regions of interest on the rendered image that they wish to emphasize or color.
 %When a user selects a region of interest on the rendered image of the volume, 
-Then, a single pass of volume ray casting is done to calculate the global visibility histogram for the whole volume and the local visibility histogram for the selected region in the view-port. From this we calculate the relative visibility histogram, which provides a measure of visible materials within the selected region. This is used to infer features that the user intends to edit in the visualization. More precisely, $H_G$ is used as a weighting function to blend the colors or opacity values in the original transfer function with a user-selected target color or alpha value.
+Then, a single pass of volume ray casting is done to calculate the global visibility histogram for the whole volume and the local visibility histogram for the selected region in the viewport. From this we calculate the relative visibility histogram, which provides a measure of visible materials within the selected region. This is used to infer features that the user intends to edit in the visualization. More precisely, $H_G$ is used as a weighting function to blend the colors or opacity values in the original transfer function with a user-selected target color or alpha value.
 
 The user-selected target color is blended with the original transfer function for intensity ranges that have positive values in the relative visibility histogram as below:
 \[
@@ -456,7 +456,7 @@ A discrete set of such component transfer functions can then be composed into a 
 
 %This method allows the user to edit the volume visualization on a feature level.
 
-%Relative visibility histograms represent the difference between the global visibility distribution across the full volume and the local visibility distribution within a user-selected region in the view port.
+%Relative visibility histograms represent the difference between the global visibility distribution across the full volume and the local visibility distribution within a user-selected region in the viewport.
 
 %The user can manipulate the colors and opacity values of the components and merge them to create new transfer functions.
 %Automatically generate a component transfer function from a user-selected region.
