@@ -403,9 +403,11 @@ Henceforth, this smoothed histogram $ H_{G} $ will be referred to as the relativ
 %Let $ H_{G}(i) $ denote the relative visibility at intensity $ i $ in $ H_{G} $, $ C_{s} $ denote the user-selected color and $ C_{i} $ denote the color of intensity $ i $ in the transfer function.
 
 
-\section{Color and Alpha Editing} \label{color_and_alpha_editing}
+\section{Output-driven Color and Alpha Editing} \label{color_and_alpha_editing}
 
-When a user selects a region of interest on the rendered image of the volume, a single pass of volume ray casting is done to calculate the global visibility histogram for the whole volume and the local visibility histogram for the selected region in the view-port. From this we calculate the relative visibility histogram, which provides a measure of visible materials within the selected region. This is used to infer features that the user intends to edit in the visualization. More precisely, $H_G$ is used as a weighting function to blend the colors or opacity values in the original transfer function with a user-selected target color or alpha value.
+The first application of the relative-visibility histogram is in allowing users to manipulate the visualization with no explicit knowledge of the transfer function. In this use-case the user can simply needs to select regions of interest on the rendered image that they wish to emphasize or color.
+%When a user selects a region of interest on the rendered image of the volume, 
+Then, a single pass of volume ray casting is done to calculate the global visibility histogram for the whole volume and the local visibility histogram for the selected region in the view-port. From this we calculate the relative visibility histogram, which provides a measure of visible materials within the selected region. This is used to infer features that the user intends to edit in the visualization. More precisely, $H_G$ is used as a weighting function to blend the colors or opacity values in the original transfer function with a user-selected target color or alpha value.
 
 The user-selected target color is blended with the original transfer function for intensity ranges that have positive values in the relative visibility histogram as below:
 \[
@@ -441,13 +443,14 @@ A_{i}-H_{G}(i)(0-A_{i}) & \text{otherwise}
 Note that the color blending and alpha blending operations can be applied separately. \autoref{fig:nucleon_ori}(c) displays the result of only applying the color blending to the volume rendering of the nucleon data set in \autoref{fig:nucleon_ori}(a), and \autoref{fig:nucleon_ori}(d) displays the result of only applying the alpha blending to the original.
 
 \section{Transfer Function Components} \label{transfer_function_components}
-In addition to direct editing of the transfer function, we introduced transfer function components, which allow the user to edit the volume visualization on a feature level.
 
-Ropinski et al. \cite{ropinski_stroke-based_2008} reported that physicians had high level requests such as emphasizing, adding or removing certain features in collaboratively adapting visualizations.
+%In addition to output-driven editing of the transfer function, we introduce transfer function components, which allow the user to edit the volume visualization on a feature level.
 
-Relative visibility histograms reveal what intensity ranges are concentrated in the view frustum behind the selected region. Therefore, the visually dominant features in a selected region can be represented by component transfer functions proportional to the positive parts of relative visibility histograms.
+In addition to low-level output-driven editing of the transfer function, the relative visibility histogram allows us to support editing the transfer function at a feature level, which is a desirable use case in many volume visualization applications. For instance, Ropinski et al. \cite{ropinski_stroke-based_2008} reported that physicians had high level requests such as emphasizing, adding or removing certain features in collaboratively adapting visualizations.
 
-The component transfer functions can be further composed into new transfer functions by modifying colors and opacity values of the components.
+As mentioned, relative visibility histograms reveal what intensity ranges are concentrated in the view frustum behind a selected 2d viewport region. The visually dominant features in the selected region can be represented by \emph{transfer function components} proportional to the positive parts of relative visibility histograms.
+
+A discrete set of such component transfer functions can then be composed into a new transfer functions for the full data set and colors and opacity values of the individual components can be separately modified.
 
 %This method allows the user to edit the volume visualization on a feature level.
 
@@ -473,11 +476,18 @@ where $ H_{G}(i) $ is the value of the relative visibility histogram $ H_{G} $ a
 \autoref{fig:nucleon_features} displays two transfer function components created from a green region and a red region in the volume rendering respectively.
 \autoref{fig:nucleon_features} (a) and (b) show the two selected regions on the volume rendering. \autoref{fig:nucleon_features} (c) and (d) show the two transfer function components which represents the relative visibility distributions of features in the two user-selected regions respectively. Both regions are rectangles and the region sizes can be modified according to the user's need.
 
-\subsection{Segments Selection with Image-Space Clustering}
-Compared to selecting regions of geometric shapes, selecting visual objects in volume rendered images is more desirable for feature specification.
-In order to achieve visual object selection, image segmentation is performed on volume rendered images and the resultant segments are stored in masks for object selection. More specifically, a GPU accelerated k-means clustering implementation is used to accomplish interactive segmentation of volume rendered images. The distance metric of the pixels is Euclidean distance in the RGB color space.
+\subsection{Image-Space Clustering for region of interest selection}
 
-When the user clicks on a position of the volume rendered image, a selected region is formed by all pixels that belong to the same segment as the pixel at the mouse position.
+
+
+%Compared to selecting regions of geometric shapes,  selecting visual objects in volume rendered images is more desirable for feature specification.
+
+%COMMENT (JOHN): "visual object" is somewhat vague, need to clarify this.
+Heretofore, we have assumed a rectangular region of interest centered on a point that the user clicks on the screen. Whilst this is a reasonable representation of the user's interest for the purposes of low-level iterative editing proposed in the previous sections, a more robust representation of the users intentions may be obtained by a more generalized representation of this region. We propose that this could be done by segmenting the rendered contiguous visual objects in 2D (we avoid using the term ``feature'' here to avoid confusion with the transfer function features discussed previously).
+
+In order to achieve visual object selection, image segmentation is performed on volume rendered images and the resultant segments are stored as individual masks for object selection. More specifically, a GPU accelerated k-means clustering implementation is used to accomplish interactive segmentation of volume rendered images. The distance metric of the pixels is Euclidean distance in the RGB color space.
+
+Now, when the user clicks on a position of the volume rendered image, a selected region is formed by all pixels that belong to the same segment as the pixel at the mouse position.
 \autoref{fig:nucleon_segments} displays the segments selected by clicking on the same screen positions as in \autoref{fig:nucleon_features}.
 
 Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b), the selected regions in \autoref{fig:nucleon_segments} (a) and (b) are segments with colors similar to the pixels at the mouse positions. The regions in \autoref{fig:nucleon_segments} (a) and (b) are larger in sizes, which result in larger view frustums with more voxels being selected. Thus, the transfer function components in \autoref{fig:nucleon_segments} (c) and (d) are more continuous compared to those in \autoref{fig:nucleon_segments} (c) and (d). The relative visibility histograms in \autoref{fig:nucleon_segments} (e) and (f) are also smoother than those in \autoref{fig:nucleon_features} (e) and (f).
@@ -664,7 +674,7 @@ With this method, different features would have distinct colors, so that they ar
 We have implemented our approach with a GPU-Raycast volume renderer with the visibility computation and rendering implemented on a GPU using CUDA. The implementation is quite lightweight, and achieves real-time performance at 30 to 40 frames per second on a computer equipped with an Intel Xeon E3-1246 v3 CPU and a NVIDIA Quadro K4200 graphics card.
 %When the color and alpha blending is performed on a user-selected region, the first pass of volume ray-casting is done to calculate the global and local visibility histograms and the volume is rendered in the second pass of ray-casting using the transfer function from the blending result.
 
-\subsection{Direct Transfer Function Editing}
+\subsection{Output-driven Transfer Function Editing}
 
 \autoref{fig:Nucleon_2}(left) displays the result of both applying color blue and adjusting alpha of the TF in \autoref{fig:nucleon_ori}(b). Note that the intensity ranges with initial red color in the middle of the transfer function have been blended with blue and have become purple.
 Similarly, \autoref{fig:Nucleon_2}(right) shows the result of applying yellow and adjusting alpha. Here, the intensity ranges in the middle have become orange after blending with the color yellow. 
@@ -677,7 +687,7 @@ Figure \ref{fig:Vortex_all} shows results of enhancing one time-step of a turbul
 \autoref{fig:Vortex_all}(b) shows a clear visualization, and respective TF, of the materials of interest blended with blue and emphasized with higher alpha.
 Similarly, \autoref{fig:Vortex_all}(c) shows the materials of interest blended with yellow and emphasized with higher alpha.
 
-The examples show that the technique can be applied effectively to a range of different datasets and transfer functions. Although we only show single step examples due to space constraints, it should be suitable for iterative editing such as in a paintbrush like tool for a large number successive of operations.
+The examples show that the technique can be applied effectively to a range of different datasets and transfer functions. Although we only show single step examples due to space constraints, it should noted that changes can be applied by the user iteratively, analagous to a paintbrush like tool for a large number successive of operations.
 
 \begin{figure}
 	\centering
