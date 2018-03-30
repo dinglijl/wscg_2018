@@ -684,7 +684,7 @@ We have implemented our approach with a GPU-Raycast volume renderer with the vis
 Similarly, \autoref{fig:Nucleon_2}(right) shows the result of applying yellow and adjusting alpha. Here, the intensity ranges in the middle have become orange after blending with the color yellow. 
 In both cases, the alpha of the relevant parts of the transfer function is increased and the alpha of the less relevant parts is decreased in order to emphasize the materials of interest.
 
-Figure \ref{fig:CT-knee_all}(left) shows show a rendered image of a CT-Knee data set with a selected region over the bone. Figure \ref{fig:CT-knee_all}(right) shows the image and the transfer function after applying a blue color and alpha adjustment. The bone material becomes mostly blue and is emphasized due to increased opacity, while the materials around the bone with lower relative intensity ranges are de-emphasized.
+Figure \ref{fig:CT-knee_all}(left) shows a rendered image of a CT-Knee data set with a selected region over the bone. Figure \ref{fig:CT-knee_all}(right) shows the image and the transfer function after applying a blue color and alpha adjustment. The bone material becomes mostly blue and is emphasized due to increased opacity, while the materials around the bone with lower relative intensity ranges are de-emphasized.
 
 Figure \ref{fig:Vortex_all} shows results of enhancing one time-step of a turbulent vortex data set.
 \autoref{fig:Vortex_all}(a) shows the rendered image and original transfer function.
@@ -786,9 +786,10 @@ The examples show that the technique can be applied effectively to a range of di
 \autoref{fig:vortex_features}, \autoref{fig:vortex_segments} and \autoref{fig:vortex_merged} show results of creating and merging transfer function components on the time-step of the turbulent vortex data set.
 
 \autoref{fig:vortex_features} displays three transfer function components created from a green region, a red region and a purple region, which are rectangular regions highlighted in inverted colors, in the volume rendering respectively.
-In contrast, \autoref{fig:vortex_segments} displays three transfer function components created from three regions based on image segmentation results. The three regions are visual objects with similar colors and are selected by clicking on the same positions as in the regions in \autoref{fig:vortex_features}.
+In contrast, \autoref{fig:vortex_segments} displays three transfer function components created from three generalized segments based on image segmentation results. The three segments are visual objects with similar colors and are selected by clicking on the same positions as in the rectangular regions in \autoref{fig:vortex_features}.
 
 \autoref{fig:vortex_merged} (a) and (d) show the volume rendered image and the transfer function created from merging the three transfer function components in \autoref{fig:vortex_features}.
+\autoref{fig:vortex_merged} (d) is the user interface for editing and merging transfer function components. It displays the individual transfer function components with their weights and colors on the left, and the resultant transfer function at the bottom.
 Similarly, \autoref{fig:vortex_merged} (b) and (e) display the volume rendered image and the transfer function created from merging the three transfer function components in \autoref{fig:vortex_segments} with color blending, and \autoref{fig:vortex_merged} (c) and (f) display the results of merging the three transfer function components in \autoref{fig:vortex_segments} using colors of the dominant components.
 In \autoref{fig:vortex_merged}, the three transfer function components are merged with weights \{2,1,0.2\}, so that the purple feature is de-emphasized, the green feature is emphasized, and the red feature remains the same level of opacity.
 
@@ -941,7 +942,7 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 	\includegraphics[width=1\linewidth]{supernova_transfer_function}
 	(e)
 	\end{minipage}
-	\caption{User-selected regions and segments on the rendering of a supernova data set; (a) \& (b): User-selected rectangular regions highlighted in inverted colors; (c) \& (d): User-selected generalized segments highlighted in inverted colors; (e): The initial transfer function}
+	\caption{User selections on the rendering of a supernova data set; (a) \& (b): User-selected rectangular regions highlighted in inverted colors; (c) \& (d): User-selected generalized segments highlighted in inverted colors; (e): The initial transfer function}
 	\label{fig:supernova_selection}
 \end{figure}
 
