@@ -792,7 +792,7 @@ The examples show that the technique can be applied effectively to a range of di
 In contrast, \autoref{fig:vortex_segments} displays three transfer function components created from three regions based on image segmentation results. The three regions are visual objects with similar colors and are selected by clicking on the same positions as in the regions in \autoref{fig:vortex_features}.
 
 \autoref{fig:vortex_merged} (a) and (d) show the volume rendered image and the transfer function created from merging the three transfer function components in \autoref{fig:vortex_features}.
-Similarly, \autoref{fig:vortex_merged} (b) and (e) display the volume rendered image and the transfer function created from merging the three transfer function components in \autoref{fig:vortex_segments} with color blending, and \autoref{fig:vortex_merged} (c) and (f) display the results of merging the three transfer function components in \autoref{fig:vortex_segments} using colors of dominant components.
+Similarly, \autoref{fig:vortex_merged} (b) and (e) display the volume rendered image and the transfer function created from merging the three transfer function components in \autoref{fig:vortex_segments} with color blending, and \autoref{fig:vortex_merged} (c) and (f) display the results of merging the three transfer function components in \autoref{fig:vortex_segments} using colors of the dominant components.
 In \autoref{fig:vortex_merged}, the three transfer function components are merged with weights \{2,1,0.2\}, so that the purple feature is de-emphasized, the green feature is emphasized, and the red feature remains the same level of opacity.
 
 %We observed that the transfer function components in \autoref{fig:vortex_merged} (e) and (f), which are derived from segments, have wider intensity ranges than those in \autoref{fig:vortex_merged} (d), which are derived from rectangular regions.
@@ -841,7 +841,7 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 		\includegraphics[width=1\linewidth]{crop/vortex_segment_purple}
 		(c)
 	\end{minipage}
-	\caption{User-selected generalized selections highlighted in inverted colors. (a): a segment in the green material; (b): a segment in the red material; (c): a segment in the purple material}
+	\caption{Generalized segments selected at the same positions as in \autoref{fig:vortex_features}, highlighted in inverted colors. (a): a segment in the green material; (b): a segment in the red material; (c): a segment in the purple material}
 	\label{fig:vortex_segments}
 \end{figure}
 
@@ -877,7 +877,7 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_green_red_purple}
 		(f)
 	\end{minipage}
-	\caption{Merge 3 features with weights \{2, 1, 0.2\} and colors from peaks of TF components; (a) and (d): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_features}; (b) and (e): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} with color blending; (c) and (f): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} using colors of dominant components}
+	\caption{Merge 3 features with weights \{2, 1, 0.2\} and colors from peaks of TF components; (a) and (d): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_features}; (b) and (e): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} with color blending; (c) and (f): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} using colors of the dominant components}
 	\label{fig:vortex_merged}
 \end{figure}
 
@@ -944,7 +944,7 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 	\includegraphics[width=1\linewidth]{supernova_transfer_function}
 	(e)
 	\end{minipage}
-	\caption{User-selected regions and segments on the rendering of a supernova data set; (a) \& (b): User-selected rectangular regions highlighted in inverted colors; (c) \& (d): User-selected generalized segments highlighted in inverted colors; (e): Initial transfer function}
+	\caption{User-selected regions and segments on the rendering of a supernova data set; (a) \& (b): User-selected rectangular regions highlighted in inverted colors; (c) \& (d): User-selected generalized segments highlighted in inverted colors; (e): The initial transfer function}
 	\label{fig:supernova_selection}
 \end{figure}
 
