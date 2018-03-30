@@ -164,7 +164,7 @@ Volume rendering, transfer function, visibility, visibility histograms
 
 A recurring challenge in volume visualization is defining effective transfer functions (TF), which assign color and opacity (alpha value) to specific data ranges for visualization. Due to the non-linear relationship between the transfer function and the resultant rendering, the process of editing transfer functions is often counter-intuitive, typically necessitating a trial-and-error process. This may be addressed using an output sensitive approach where the user can more directly control the appearance of the visualization, without explicit knowledge of the transfer function. 
 
-In this paper, we propose a technique which enables us to infer a user's intended changes to the visualization, when they click or select a region in the rendered image of a 3D volume data set. This is done by weighting the data in the selected region based on the proportion of materials visible to the user within that region. We introduce the concept of a \emph{relative visibility histogram}, derived from the relationship between the global visibility and the local visibility of data in the user-selected region.
+In this paper, we propose a technique which enables us to infer a user's intended changes to the visualization when they click or select a region in the rendered image of a 3D volume data set. 3D selection is a non-trivial process in volume visulization due to the presence of many overlapped layers of transparent data. This is achieved in our solution by weighting the data in the selected region based on the proportion of materials visible to the user within that region. We introduce the concept of a \emph{relative visibility histogram}, derived from the relationship between the global visibility and the local visibility of data in the user-selected region.
 Based on this weighting, the user can directly modify colors and opacity values in the rendered image of the volume data, in a manner analogous to painting a 3D scene.
 In addition, we introduce an automated technique for creating transfer function components from relative visibility histograms to represent features of interest in the selected regions.
 %using relative visibility histograms.
@@ -478,8 +478,10 @@ H_{G}(i) & \text{if $ H_{G}(i)>0 $} \\
 
 where $ H_{G}(i) $ is the value of the relative visibility histogram $ H_{G} $ at intensity $ i $.
 
-\autoref{fig:nucleon_features} displays two transfer function components created from a green region and a red region in the volume rendering respectively.
-\autoref{fig:nucleon_features} (a) and (b) show the two selected regions in the volume rendering. \autoref{fig:nucleon_features} (c) and (d) show the two transfer function components which represent the relative visibility distributions of features in the two user-selected regions respectively. Both regions are rectangles, and the region sizes can be modified according to the user's need.
+%A LOT OF AMBIGUITY HERE; we are using region for the rectangle but also region for the green object in the rendering
+%\autoref{fig:nucleon_features} displays two transfer function components created by a selection within a green region and a red region in rendered volume image respectively.
+\autoref{fig:nucleon_features} displays two examples of transfer function components created by a rectangular selection within the rendered volume image respectively.
+\autoref{fig:nucleon_features} (a) and (b) show the two selected regions in the volume rendering. \autoref{fig:nucleon_features} (c) and (d) show the two transfer function components which represent the relative visibility distributions of features in the two user-selected regions respectively. The regions are rectangles centered around a single point in 2D screen space, and the region sizes can be modified according to the user's need.
 
 \subsection{Image-Space Clustering for region of interest selection}
 
@@ -488,14 +490,14 @@ where $ H_{G}(i) $ is the value of the relative visibility histogram $ H_{G} $ a
 %Compared to selecting regions of geometric shapes,  selecting visual objects in volume rendered images is more desirable for feature specification.
 
 %COMMENT (JOHN): "visual object" is somewhat vague, need to clarify this.
-Heretofore, we have assumed a rectangular region of interest centered on a point such as the location of the mouse cursor when a user clicks on the screen. While this is a reasonable representation of the user's interest for the purposes of low-level iterative editing proposed in the previous sections, a more robust representation of the user's intentions may be obtained by a more generalized representation of this region. We propose that one alternative of the region of interest can be obtained by segmenting the rendered image into contiguous visual objects in 2D (we avoid using the term ``feature'' here to avoid confusion with the transfer function features discussed previously).
+Heretofore, we have assumed a rectangular region of interest centered on a point such as the location of the mouse cursor when a user clicks on the screen. While this is a reasonable representation of the user's interest for the purposes of low-level iterative editing proposed in the previous sections, a more robust representation of the user's intended selection may be obtained by a more generalized representation of this region. We propose that one alternative of the region of interest can be obtained by segmenting the rendered image into contiguous visual objects in 2D (we avoid using the term ``feature'' here to avoid confusion with the transfer function features discussed previously).
 
 In order to achieve visual object selection, image segmentation is performed on volume rendered images and the resultant segments are stored as individual masks for object selection. More specifically, a GPU accelerated k-means clustering implementation is used to accomplish interactive segmentation of volume rendered images. The distance metric used for the segmentation is the Euclidean distance in the RGB color space.
 
 Now, when the user clicks on a position of the volume rendered image, a selected region is formed by all pixels that belong to the same segment as the pixel at the mouse position.
-\autoref{fig:nucleon_segments} displays the segments selected by clicking on the same screen positions as in \autoref{fig:nucleon_features}.
+\autoref{fig:nucleon_segments} displays the regions selected by clicking on the same screen positions as in \autoref{fig:nucleon_features}.
 
-Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b), the selected regions in \autoref{fig:nucleon_segments} (a) and (b) are segments with colors similar to the pixels at the respective mouse positions. The regions in \autoref{fig:nucleon_segments} (a) and (b) are larger in sizes, which result in larger view frustums with more voxels being selected. Thus, the transfer function components in \autoref{fig:nucleon_segments} (c) and (d) are more continuous compared to those in \autoref{fig:nucleon_segments} (c) and (d). The relative visibility histograms in \autoref{fig:nucleon_segments} (e) and (f) are also smoother than those in \autoref{fig:nucleon_features} (e) and (f).
+Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b), the selected regions in \autoref{fig:nucleon_segments} (a) and (b) are heterogeneously-shaped segments with colors similar to the pixels at the respective mouse positions. These screen regions are larger in size, resulting in larger view frustums with more voxels being selected, and the colors across the selection tends to be more homogeneous due to the clustering. As a result of this, we note that the resultant transfer function components in \autoref{fig:nucleon_segments} (c) and (d) are more continuous compared to those in \autoref{fig:nucleon_features} (c) and (d) for the rectangular selections. The relative visibility histograms in \autoref{fig:nucleon_segments} (e) and (f) are also smoother than those in \autoref{fig:nucleon_features} (e) and (f). To disambiguate the two select techniques, we refer to them henceforth as \emph{rectangular selection} and \emph{generalized selection}.
 
 \begin{figure}
 	\centering
@@ -529,7 +531,7 @@ Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b
 		\includegraphics[width=1\linewidth]{nucleon_red_Relative_visibility_histogram}
 (f)
 	\end{minipage}
-	\caption{Left: A TF component (c) created from a green region (a) (highlighted in inverted colors) and its relative visibility histogram (e); Right: A TF component (d) created from a red region (b) and its relative visibility histogram (f).}
+	\caption{Left: A TF component (c) created from a green rectangular region (a) (highlighted in inverted colors) and its relative visibility histogram (e); Right: A TF component (d) created from a red region (b) and its relative visibility histogram (f).}
 	\label{fig:nucleon_features}
 \end{figure}
 
@@ -565,7 +567,7 @@ Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b
 		\includegraphics[width=1\linewidth]{nucleon_red_segment_Relative_visibility_histogram}
 (f)
 	\end{minipage}
-	\caption{Left: A TF component (c) created from a green segment (a) (highlighted in inverted colors) and its relative visibility histogram (e); Right: A TF component (d) created from a red segment (b) and its relative visibility histogram (f).}
+	\caption{Left: A TF component (c) created from a green generealized selection segment (a) (highlighted in inverted colors) and its relative visibility histogram (e); Right: A TF component (d) created from a red segment (b) and its relative visibility histogram (f).}
 	\label{fig:nucleon_segments}
 \end{figure}
 
@@ -595,7 +597,7 @@ Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b
 %	\caption{nucleon_merged_segment_green_red}
 %	\label{fig:nucleon_merged_segment_green_red}
 	\end{minipage}
-	\caption{(a) and (c): Volume rendering and its TF from merging the TF components in \autoref{fig:nucleon_features}; (b) and (d): Volume rendering and its TF from merging the TF components in \autoref{fig:nucleon_segments}}
+	\caption{(a) and (c): Volume rendering and its TF obtaing from merging the TF components in \autoref{fig:nucleon_features} using \emph{rectangular selection}; (b) and (d): Volume rendering and TF based on \emph{generalized selection} in \autoref{fig:nucleon_segments}}
 	\label{fig:nucleon_merged}
 \end{figure}
 
@@ -797,7 +799,7 @@ In \autoref{fig:vortex_merged}, the three transfer function components are merge
 
 %\autoref{fig:vortex_merged_2} displays the results of merging two transfer function components, i.e. the green feature and the red feature, with weights \{2,1\} and setting the colors of the two components to blue and orange respectively.
 
-\autoref{fig:supernova_merge} displays the results of merging two transfer function components, i.e. the red feature and the green feature, with weights \{1, 1\}. The transfer function components are created from the user-selected regions in \autoref{fig:supernova_selection} (a) and (b), and the user-selected segments in \autoref{fig:supernova_selection} (c) and (d) respectively. \autoref{fig:supernova_selection} (e) shows the initial transfer function used for volume rendering.
+\autoref{fig:supernova_merge} displays the results of merging two transfer function components, i.e. the red feature and the green feature, with weights \{1, 1\}. The transfer function components are created from the user-selected rectangular regions in \autoref{fig:supernova_selection} (a) and (b), and the user-selected generalized segments in \autoref{fig:supernova_selection} (c) and (d) respectively. \autoref{fig:supernova_selection} (e) shows the initial transfer function used for volume rendering.
 
 From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed that the transfer function components created from segments are smoother and have wider intensity ranges than those created from rectangular regions.
 
@@ -839,7 +841,7 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 		\includegraphics[width=1\linewidth]{crop/vortex_segment_purple}
 		(c)
 	\end{minipage}
-	\caption{User-selected segments highlighted in inverted colors. (a): a segment in the green material; (b): a segment in the red material; (c): a segment in the purple material}
+	\caption{User-selected generalized selections highlighted in inverted colors. (a): a segment in the green material; (b): a segment in the red material; (c): a segment in the purple material}
 	\label{fig:vortex_segments}
 \end{figure}
 
@@ -942,7 +944,7 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 	\includegraphics[width=1\linewidth]{supernova_transfer_function}
 	(e)
 	\end{minipage}
-	\caption{User-selected regions and segments on the rendering of a supernova data set; (a) \& (b): User-selected regions highlighted in inverted colors; (c) \& (d): User-selected segments highlighted in inverted colors; (e): Initial transfer function}
+	\caption{User-selected regions and segments on the rendering of a supernova data set; (a) \& (b): User-selected rectangular regions highlighted in inverted colors; (c) \& (d): User-selected generalized segments highlighted in inverted colors; (e): Initial transfer function}
 	\label{fig:supernova_selection}
 \end{figure}
 
