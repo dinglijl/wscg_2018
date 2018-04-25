@@ -51,34 +51,34 @@
 
 \title{Intuitive Transfer Function Editing Using Relative Visibility Histograms}
 
-%\author{
-%\parbox{0.25\textwidth}{\centering
-%Shengzhou Luo\\[1mm]
-%Graphics Vision and Visualisation Group (GV2)\\
-%Trinity College Dublin\\
-%Ireland\\
+\author{
+\parbox{0.25\textwidth}{\centering
+Shengzhou Luo\\[1mm]
+Graphics Vision and Visualisation Group (GV2)\\
+Trinity College Dublin\\
+Ireland\\
+%Country (ZIP) code, City, State\\[1mm]
+luos@tcd.ie
+}
+\hspace{0.05\textwidth}
+\parbox{0.25\textwidth}{\centering
+Subhrajyoti Maji\\[1mm]
+Graphics Vision and Visualisation Group (GV2)\\
+Trinity College Dublin\\
+Ireland\\
 %%Country (ZIP) code, City, State\\[1mm]
-%luos@tcd.ie
-%}
-%\hspace{0.05\textwidth}
-%\parbox{0.25\textwidth}{\centering
-%Subhrajyoti Maji\\[1mm]
-%Graphics Vision and Visualisation Group (GV2)\\
-%Trinity College Dublin\\
-%Ireland\\
+majis@tcd.ie
+}
+\hspace{0.05\textwidth}
+\parbox{0.25\textwidth}{\centering
+John Dingliana\\[1mm]
+Graphics Vision and Visualisation Group (GV2)\\
+Trinity College Dublin\\
+Ireland\\
 %%Country (ZIP) code, City, State\\[1mm]
-%majis@tcd.ie
-%}
-%\hspace{0.05\textwidth}
-%\parbox{0.25\textwidth}{\centering
-%John Dingliana\\[1mm]
-%Graphics Vision and Visualisation Group (GV2)\\
-%Trinity College Dublin\\
-%Ireland\\
-%%Country (ZIP) code, City, State\\[1mm]
-%John.Dingliana@tcd.ie
-%}
-%}
+John.Dingliana@tcd.ie
+}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                          Hyperref
@@ -843,41 +843,41 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 	\label{fig:vortex_segments}
 \end{figure}
 
-\begin{figure}
+\begin{figure*}
 	\centering
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.32\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/vortex_merged_green_red_purple}
 		(a)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.32\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/vortex_merged_segment_blend_green_red_purple}
 		(b)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.32\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/vortex_merged_segment_green_red_purple}
 		(c)
 	\end{minipage}
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.32\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_vortex_merged_green_red_purple}
 		(d)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.32\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_blend_green_red_purple}
 		(e)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.32\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_green_red_purple}
 		(f)
 	\end{minipage}
 	\caption{Merge 3 features with weights \{2, 1, 0.2\} and colors from peaks of TF components; (a) and (d): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_features}; (b) and (e): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} with color blending; (c) and (f): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} using colors of the dominant components}
 	\label{fig:vortex_merged}
-\end{figure}
+\end{figure*}
 
 %\begin{figure}
 %	\centering
@@ -946,31 +946,31 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 	\label{fig:supernova_selection}
 \end{figure}
 
-\begin{figure}
+\begin{figure*}
 	\centering
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.32\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/supernova_merged_red_green}
 		(a)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.32\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/supernova_merged_segment_red_green}
 		(b)
 	\end{minipage}
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.32\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_supernova_merged_red_green}
 		(c)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.32\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_supernova_merged_segment_red_green}
 		(d)
 	\end{minipage}
 	\caption{Merge 2 features with weights \{1, 1\} and colors from peaks of TF components; (a) \& (c): Volume rendering and TF from merging the TF components in \autoref{fig:supernova_selection} (a) and (b); (b) \& (d): Volume rendering and TF from merging the TF components in \autoref{fig:supernova_selection} (c) and (d)}
 	\label{fig:supernova_merge}
-\end{figure}
+\end{figure*}
 
 \section{Conclusion}
 In this paper, we introduce relative visibility histograms for inferring user intentions and present interactive techniques for editing colors and opacity values in transfer functions for volume visualization. We describe a direct color and alpha editing technique as well as a higher level technique that involves creating and merging transfer function components which represent features in the volume rendering.
@@ -1000,7 +1000,7 @@ In future, we would like to conduct user studies to evaluate the effectiveness o
 
 The Supernova data set is made available by Dr. John Blondin at the North Carolina State University through US Department of Energy's SciDAC Institute for Ultrascale Visualization. Other data sets were obtained from the Volume Library courtesy of Stefan Roettger, the Stanford Volume Data archive and the Time-varying data repository at UCDavis. The nucleon data set was obtained from the free distribution of the Voreen engine. We would like to thank the respective owners for making these data sets available.
 
-%This research has been conducted with the financial support of Science Foundation Ireland (SFI) under Grant Number 13/IA/1895.
+This research has been conducted with the financial support of Science Foundation Ireland (SFI) under Grant Number 13/IA/1895.
 
 %-------------------------------------------------------------------------
 % example of algorithm typesetting
