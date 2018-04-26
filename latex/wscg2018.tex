@@ -177,6 +177,10 @@ Compared to other similar techniques, our approach is relatively lightweight, re
 
 \section{Related Work}
 
+\cite{kindlmann_curvature-based_2003}
+\cite{potts_transfer_2004}
+\cite{bruckner_style_2007}
+
 Transfer function specification is an essential part of the volume visualization pipeline.
 %A one-dimensional transfer function is a mapping from scalar values to color and alpha values.
 The specification is often achieved by a trial-and-error process, which involves a significant amount of tweaking of colors and opacity values, and the resultant visualization largely depends on how well the transfer function captures features of interest \cite{kniss_multidimensional_2002}.
@@ -243,25 +247,25 @@ Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives 
 
 \begin{figure}[t]
 	\centering
-	\begin{minipage}{.1\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_crop}\\
 		(a)%\caption{Nucleon}
 		\label{fig:nucleon}
 	\end{minipage}~
-	\begin{minipage}{.13\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_nucleon}\\
 		(b)%\caption{TF of \autoref{fig:nucleon}}
 		\label{fig:tf_nucleon}
-	\end{minipage}~
-	\begin{minipage}{.1\textwidth}
+	\end{minipage}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_2_color_crop}
 		(c)%\caption{Apply blue to \autoref{fig:nucleon}}
 		\label{fig:nucleon_2_color}
 	\end{minipage}~
-	\begin{minipage}{.1\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_2_alpha_crop}
 		(d)%\caption{Adjust alpha of \autoref{fig:nucleon}}
@@ -274,26 +278,26 @@ Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives 
 
 \begin{figure}
 	\centering
-	\begin{minipage}{.155\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{global_visibility_histogram}
 		(a)%\caption{Global visibility histogram}
 		\label{fig:global_visibility_histogram}
 	\end{minipage}~
-	\begin{minipage}{.155\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{local_visibility_histogram}
 		(b)%		\caption{Local visibility histogram}
 		\label{fig:local_visibility_histogram}
 	\end{minipage}
 	%\hspace{1cm}
-	\begin{minipage}{.155\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{relative_visibility_histogram}
 		(c) %		\caption{Relative visibility histogram}
 		\label{fig:relative_visibility_histogram}
 	\end{minipage}~
-	\begin{minipage}{.155\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{relative_visibility_histogram_with_gaussian}
 		(d) %		\caption{Smoothed relative visibility histogram}
@@ -338,61 +342,6 @@ where $ H_{g}=Gaussian(H_{r},n,\sigma)$, $ n $ is the size and $ \sigma $ is the
 Henceforth, this smoothed histogram $ H_{G} $ will be referred to as the relative visibility histogram, and $ H_{G}(i) $, which is the value of the relative visibility histogram $ H_{G} $ at intensity $ i $, will be referred to as the relative visibility of intensity $ i$.
 
 
-
-
-\begin{figure}
-	\centering
-	\begin{minipage}{.1\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{nucleon_blue_crop}
-		%\caption{Apply blue and adjust alpha of \autoref{fig:nucleon_ori}(a)}
-		\label{fig:nucleon_2_blue}
-	\end{minipage}~
-	\begin{minipage}{.13\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{tf_nucleon_2_blue}
-		%\caption{TF of \autoref{fig:nucleon_2_blue}}
-		\label{fig:tf_nucleon_2_blue}
-	\end{minipage}~
-	\begin{minipage}{.1\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{nucleon_yellow_crop}
-		%\caption{Apply yellow and adjust alpha of \autoref{fig:nucleon_ori}(a)}
-		\label{fig:nucleon_2_yellow}
-	\end{minipage}~
-	\begin{minipage}{.13\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{tf_nucleon_2_yellow}
-		%\caption{TF of \autoref{fig:nucleon_2_yellow}}
-		\label{fig:tf_nucleon_2_yellow}
-	\end{minipage}
-	%	\begin{minipage}{.25\textwidth}
-	%	\centering
-	%	\includegraphics[width=1\linewidth]{nucleon_1_blue}
-	%	\caption{Pick outside}
-	%	\label{fig:nucleon_1_blue}
-	%	\end{minipage}~
-	%	\begin{minipage}{.25\textwidth}
-	%	\centering
-	%	\includegraphics[width=1\linewidth]{nucleon_1_yellow}
-	%	\caption{Pick outside}
-	%	\label{fig:nucleon_1_yellow}
-	%	\end{minipage}
-	%		\begin{minipage}{.2\textwidth}
-	%		\centering
-	%		\includegraphics[width=1\linewidth]{nucleon_3_blue}
-	%		\caption{Pick inside}
-	%		\label{fig:nucleon_3_blue}
-	%		\end{minipage}~
-	%		\begin{minipage}{.2\textwidth}
-	%		\centering
-	%		\includegraphics[width=1\linewidth]{nucleon_3_yellow}
-	%		\caption{Pick inside}
-	%		\label{fig:nucleon_3_yellow}
-	%		\end{minipage}
-	\caption{Left: Blue applied to selected region of TF in \autoref{fig:nucleon_ori}(b) and opacity enhanced; Right: Yellow applied and opacity enhanced. The modified TF is shown for each case alongside the rendering}
-	\label{fig:Nucleon_2}
-\end{figure}
 
 %\section{Color and Alpha Blending}
 %The color and alpha blending operations aim to provide an intuitive means for modifying and emphasizing visible materials of interest %based on the user preference information derived from the relative visibility histogram.
@@ -498,32 +447,32 @@ Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b
 
 \begin{figure}
 	\centering
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/nucleon_selection_green}
 (a)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/nucleon_selection_red}
 (b)
 	\end{minipage}
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.245\textwidth}
 	\centering
 	\includegraphics[width=1\linewidth]{nucleon_Green_feature}
 (c)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_Red_feature}
 (d)
 	\end{minipage}
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_green_Relative_visibility_histogram}
 (e)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_red_Relative_visibility_histogram}
 (f)
@@ -534,32 +483,32 @@ Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b
 
 \begin{figure}
 	\centering
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/nucleon_segment_green}
 (a)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/nucleon_segment_red}
 (b)
 	\end{minipage}
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_green_segment}
 (c)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_red_segment}
 (d)
 	\end{minipage}
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_green_segment_Relative_visibility_histogram}
 (e)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_red_segment_Relative_visibility_histogram}
 (f)
@@ -570,24 +519,24 @@ Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b
 
 \begin{figure}
 	\centering
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/nucleon_merged_green_red}
 		(a)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/nucleon_merged_segment_green_red}
 		(b)
 	\end{minipage}
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_green_red_Merged_Transfer_function}
 		(c)
 %	\caption{nucleon_merged_green_red}
 %	\label{fig:nucleon_merged_green_red}
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_green_red_segment_Merged_Transfer_function}
 		(d)
@@ -673,6 +622,62 @@ where $ c_{j} $ is the color and $ w_{j} $ ($ w_{j} \geq 0 $) is the weight of t
 
 With this method, different features would have distinct colors, so that they are distinguishable by colors in the volume rendering.
 
+
+\begin{figure}
+	\centering
+	\begin{minipage}{.2\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{nucleon_blue_crop}
+		%\caption{Apply blue and adjust alpha of \autoref{fig:nucleon_ori}(a)}
+		\label{fig:nucleon_2_blue}
+	\end{minipage}~
+	\begin{minipage}{.29\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{tf_nucleon_2_blue}
+		%\caption{TF of \autoref{fig:nucleon_2_blue}}
+		\label{fig:tf_nucleon_2_blue}
+	\end{minipage}
+	\begin{minipage}{.2\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{nucleon_yellow_crop}
+		%\caption{Apply yellow and adjust alpha of \autoref{fig:nucleon_ori}(a)}
+		\label{fig:nucleon_2_yellow}
+	\end{minipage}~
+	\begin{minipage}{.29\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{tf_nucleon_2_yellow}
+		%\caption{TF of \autoref{fig:nucleon_2_yellow}}
+		\label{fig:tf_nucleon_2_yellow}
+	\end{minipage}
+	%	\begin{minipage}{.25\textwidth}
+	%	\centering
+	%	\includegraphics[width=1\linewidth]{nucleon_1_blue}
+	%	\caption{Pick outside}
+	%	\label{fig:nucleon_1_blue}
+	%	\end{minipage}~
+	%	\begin{minipage}{.25\textwidth}
+	%	\centering
+	%	\includegraphics[width=1\linewidth]{nucleon_1_yellow}
+	%	\caption{Pick outside}
+	%	\label{fig:nucleon_1_yellow}
+	%	\end{minipage}
+	%		\begin{minipage}{.2\textwidth}
+	%		\centering
+	%		\includegraphics[width=1\linewidth]{nucleon_3_blue}
+	%		\caption{Pick inside}
+	%		\label{fig:nucleon_3_blue}
+	%		\end{minipage}~
+	%		\begin{minipage}{.2\textwidth}
+	%		\centering
+	%		\includegraphics[width=1\linewidth]{nucleon_3_yellow}
+	%		\caption{Pick inside}
+	%		\label{fig:nucleon_3_yellow}
+	%		\end{minipage}
+	\caption{Left: Blue applied to selected region of TF in \autoref{fig:nucleon_ori}(b) and opacity enhanced; Right: Yellow applied and opacity enhanced. The modified TF is shown for each case alongside the rendering}
+	\label{fig:Nucleon_2}
+\end{figure}
+
+
 \section{Results}
 
 We have implemented our approach with a GPU-Raycast volume renderer with the visibility computation and rendering implemented on a GPU using CUDA. The implementation is quite lightweight and achieves real-time performance at 30 to 40 frames per second on a computer equipped with an Intel Xeon E3-1246 v3 CPU and an NVIDIA Quadro K4200 graphics card.
@@ -695,31 +700,35 @@ The examples show that the technique can be applied effectively to a range of di
 
 \begin{figure}
 	\centering
-	\begin{minipage}{.1\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{CT-Knee_crop}
 		%\caption{CT-Knee}
+(a)
 		\label{fig:CT-Knee}
 	\end{minipage}~
-	\begin{minipage}{.12\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_CT-Knee}
 		%\caption{TF of \autoref{fig:CT-Knee}}
+(b)
 		\label{fig:tf_CT-Knee}
-	\end{minipage}~
-	\begin{minipage}{.1\textwidth}
+	\end{minipage}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{CT-Knee_blue_crop}
 		%\caption{Apply blue and adjust alpha of \autoref{fig:CT-Knee}}
+(c)
 		\label{fig:CT-Knee_blue}
 	\end{minipage}~
-	\begin{minipage}{.12\textwidth}
+	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_CT-Knee_blue}
 		%\caption{TF of \autoref{fig:CT-Knee_blue}}
+(d)
 		\label{fig:tf_CT-Knee_blue}
 	\end{minipage}
-	\caption{Left: CT-Knee data set and basic TF; Right: Blue applied and opacity enhanced for selected region}
+	\caption{(a) \& (b): CT-Knee data set and basic TF; (c) \& (d): Volume rendering and TF after blue applied and opacity enhanced for selected region}
 	\label{fig:CT-knee_all}
 	
 \end{figure}
@@ -845,32 +854,32 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 
 \begin{figure*}
 	\centering
-	\begin{minipage}{.32\textwidth}
+	\begin{minipage}{.33\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/vortex_merged_green_red_purple}
 		(a)
 	\end{minipage}~
-	\begin{minipage}{.32\textwidth}
+	\begin{minipage}{.33\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/vortex_merged_segment_blend_green_red_purple}
 		(b)
 	\end{minipage}~
-	\begin{minipage}{.32\textwidth}
+	\begin{minipage}{.33\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/vortex_merged_segment_green_red_purple}
 		(c)
 	\end{minipage}
-	\begin{minipage}{.32\textwidth}
+	\begin{minipage}{.33\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_vortex_merged_green_red_purple}
 		(d)
 	\end{minipage}~
-	\begin{minipage}{.32\textwidth}
+	\begin{minipage}{.33\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_blend_green_red_purple}
 		(e)
 	\end{minipage}~
-	\begin{minipage}{.32\textwidth}
+	\begin{minipage}{.33\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_green_red_purple}
 		(f)
@@ -917,27 +926,27 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 
 \begin{figure}
 	\centering
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/supernova_selection_red}
 		(a)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/supernova_selection_green}
 		(b)
 	\end{minipage}
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/supernova_segment_red}
 		(c)
 	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/supernova_segment_green}
 		(d)
-	\end{minipage}~
-	\begin{minipage}{.16\textwidth}
+	\end{minipage}
+	\begin{minipage}{.49\textwidth}
 	\centering
 	\includegraphics[width=1\linewidth]{supernova_transfer_function}
 	(e)
@@ -948,22 +957,22 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 
 \begin{figure*}
 	\centering
-	\begin{minipage}{.32\textwidth}
+	\begin{minipage}{.4\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/supernova_merged_red_green}
 		(a)
 	\end{minipage}~
-	\begin{minipage}{.32\textwidth}
+	\begin{minipage}{.4\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{crop/supernova_merged_segment_red_green}
 		(b)
 	\end{minipage}
-	\begin{minipage}{.32\textwidth}
+	\begin{minipage}{.4\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_supernova_merged_red_green}
 		(c)
 	\end{minipage}~
-	\begin{minipage}{.32\textwidth}
+	\begin{minipage}{.4\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_supernova_merged_segment_red_green}
 		(d)
