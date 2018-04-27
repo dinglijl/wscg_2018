@@ -177,9 +177,7 @@ Compared to other similar techniques, our approach is relatively lightweight, re
 
 \section{Related Work}
 
-\cite{kindlmann_curvature-based_2003}
-\cite{potts_transfer_2004}
-\cite{bruckner_style_2007}
+%\cite{potts_transfer_2004}
 
 Transfer function specification is an essential part of the volume visualization pipeline.
 %A one-dimensional transfer function is a mapping from scalar values to color and alpha values.
@@ -196,7 +194,9 @@ One of the challenges for such an approach is highlighted by Mindek et al.~\cite
 For instance, Guo et al. \cite{guo_wysiwyg_2011} proposed a sketch-based approach that allows direct manipulation of transfer functions by brushing strokes on top of volume rendered images, which is similar to the operations in painting applications for 2D images.
 Later, Guo and Yuan \cite{guo_local_2013} extended the sketch-based technique for specifying local transfer functions for topology regions using contour trees.
 %Providing exemplar images from specific transfer  functions is another method for assisting the user in transfer function design.
+
 Wu and Qu \cite{wu_interactive_2007} presented an approach that allows users to select sample images rendered using predefined transfer functions and generates new transfer functions by fusing multiple features in distinct volume renderings.
+Bruckner and Gr{\"o}ller \cite{bruckner_style_2007} presented style transfer functions, which allow the user to specify styles extracted from actual illustrations in the transfer function. Their also curvature information \cite{kindlmann_curvature-based_2003} to improve the illustrative effects, i.e. adjusting the thickness of style-based contours based on the curvature along the viewing direction.
 Ropinski et al. \cite{ropinski_stroke-based_2008} proposed a stroke-based approach for specifying transfer functions by drawing strokes near silhouettes on a monochromatic view of the volume and generating transfer function components \cite{castro_transfer_1998} that later can be modified and combined to explore the volume.
 
 
