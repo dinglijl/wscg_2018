@@ -203,7 +203,7 @@ Ropinski et al. \cite{ropinski_stroke-based_2008} proposed a stroke-based approa
 
 Many of the aforementioned approaches require, among other things, a model of what is visible to the user from a particular view direction, in other words, the visibility of features in volume data.
 The visibility of a sample refers to the alpha contribution of a sample to the final image, taking into account the degree to which it is occluded by other samples. This can be computed during ray-casting as the difference between the accumulated alpha of a sample and the accumulated alpha of the previous sample along a ray in the view direction \cite{emsenhuber_visibility_2008}.
-Correa et al. presented the general notion of visibility histograms \cite{correa_visibility_2011} which represent the distribution of visibility over intensity ranges in a volume rendering image.
+Correa and Ma presented the general notion of visibility histograms \cite{correa_visibility_2011} which represent the distribution of visibility over intensity ranges in a volume rendering image.
 Wang et al. \cite{wang_efficient_2011} extended visibility histograms to feature visibility histograms for measuring the influence of features on the resultant volume rendered images.
 Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives features at a screen position with the highest visibility along a ray and exploited this information for volume picking.
 
@@ -986,6 +986,9 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 In this paper, we introduce relative visibility histograms for inferring user intentions and present interactive techniques for editing colors and opacity values in transfer functions for volume visualization. We describe a direct color and alpha editing technique as well as a higher level technique that involves creating and merging transfer function components which represent features in the volume rendering.
 
 %These approaches are lightweight compared to similar techniques and performs in real-time.
+
+%\cite{correa_visibility_2011}
+%\cite{wang_efficient_2011}
 
 Our color and alpha editing approach described in \autoref{color_and_alpha_editing} has a similar interaction paradigm to that proposed by Guo et al. \cite{guo_wysiwyg_2011} in terms of emphasizing features and applying colors to features. However, the feature definition in Guo et al.'s approach relies on clustering of four attributes, i.e. depth, visibility, alpha and intensity. The clustering of attributes of voxels may be computationally heavy particularly for large volume data sets.
 In contrast, our approach identifies relevant intensity ranges of the transfer function based purely on visibility information, thus requiring a much more lightweight approach.
