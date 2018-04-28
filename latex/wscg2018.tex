@@ -983,12 +983,9 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 \end{figure*}
 
 \section{Conclusion}
-In this paper, we introduce relative visibility histograms for inferring user intentions and present interactive techniques for editing colors and opacity values in transfer functions for volume visualization. We describe a direct color and alpha editing technique as well as a higher level technique that involves creating and merging transfer function components which represent features in the volume rendering.
+In this paper, we introduce relative visibility histograms for inferring user intentions and present interactive techniques for editing colors and opacity values in transfer functions for volume visualization. We describe an output-driven color and alpha editing technique as well as a higher level technique that involves creating and merging transfer function components which represent features in the volume rendering.
 
 %These approaches are lightweight compared to similar techniques and performs in real-time.
-
-%\cite{correa_visibility_2011}
-%\cite{wang_efficient_2011}
 
 Our color and alpha editing approach described in \autoref{color_and_alpha_editing} has a similar interaction paradigm to that proposed by Guo et al. \cite{guo_wysiwyg_2011} in terms of emphasizing features and applying colors to features. However, the feature definition in Guo et al.'s approach relies on clustering of four attributes, i.e. depth, visibility, alpha and intensity. The clustering of attributes of voxels may be computationally heavy particularly for large volume data sets.
 In contrast, our approach identifies relevant intensity ranges of the transfer function based purely on visibility information, thus requiring a much more lightweight approach.
@@ -1001,6 +998,8 @@ They hypothesize that the inner stroke covers the feature of interest in image s
 In some cases, such as a complex flow visualization, it may be difficult draw a stroke along the silhouette and determine a distance so that the two further generated strokes would be one inside the feature of interest and the other outside of it.
 
 In our transfer function components approach, only a region inside the feature of interest is needed for creating a transfer function component to represent the feature. Moreover, apart from selecting a rectangular region around the mouse position, the user can also select segments generated from k-means clustering in image space. The segments often cover more pixels and thus lead to smoother transfer function components.
+
+Both the visibility-driven transfer functions by Correa and Ma \cite{correa_visibility_2011} and the feature visibility technique by Wang et al. \cite{wang_efficient_2011} utilize iterative optimizations to refine the transfer functions. Correa and Ma derived the target visibility distribution from the user-defined transfer function, while Wang et al. allow the user to specify the target feature visibility. The transfer functions are then refined by minimizing the difference between the visibility distribution of the current volume rendering and the target visibility distribution. On the other hand, our approaches do not involve an iterative optimization process. The relative visibility histogram is only computed once in either the output-driven color and alpha editing or creating a transfer function component from a user-selected region. 
 
 However, the proposed techniques are subject to the limitations of 1D transfer functions, e.g. it is not possible to separate features of interest that overlap in the 1D transfer function domain.
 Both the color and alpha editing and transfer function components techniques are based on relative visibility histograms, which indicate the difference between the global visibility distribution across the volume and the local visibility distribution within the user-selected region. Therefore, only materials that are visible in the initial transfer function can be captured and edited by the proposed techniques.
