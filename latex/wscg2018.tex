@@ -181,7 +181,7 @@ Compared to other similar techniques, our approach is relatively lightweight, re
 
 Transfer function specification is an essential part of the volume visualization pipeline.
 %A one-dimensional transfer function is a mapping from scalar values to color and alpha values.
-The specification is often achieved by a trial-and-error process, which involves a significant amount of tweaking of colors and opacity values, and the resultant visualization largely depends on how well the transfer function captures features of interest \cite{kniss_multidimensional_2002} \cite{kindlmann_curvature-based_2003} \cite{potts_transfer_2004}.
+The specification is often achieved by a trial-and-error process, which involves a significant amount of tweaking of colors and opacity values, and the resultant visualization largely depends on how well the transfer function captures features of interest \cite{kniss_multidimensional_2002} \cite{kindlmann_curvature-based_2003}.% \cite{potts_transfer_2004}.
 %However, it is non-trivial to obtain an effective transfer function. The specification is often achieved by a trial-and-error process, which involves a significant amount of tweaking of color and opacity.
 One of the challenges for such an approach is highlighted by Mindek et al.~\cite{mindek_data-sensitive_2017} who argue that often small changes in input parameters (i.e. the transfer function parameters) can lead to dis-proportionally large changes to the visualization. While Mindek et al. propose a data-sensitive solution that addresses this dis-proportionality, others take the route of output-driven transfer function editing, that is, manipulation of what is rendered, without the user being explicitly exposed to the underlying changes to the transfer function.
 
@@ -632,19 +632,19 @@ With this method, different features would have distinct colors, so that they ar
 		%\caption{Apply blue and adjust alpha of \autoref{fig:nucleon_ori}(a)}
 		\label{fig:nucleon_2_blue}
 	\end{minipage}~
-	\begin{minipage}{.29\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{tf_nucleon_2_blue}
-		%\caption{TF of \autoref{fig:nucleon_2_blue}}
-		\label{fig:tf_nucleon_2_blue}
-	\end{minipage}
 	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_yellow_crop}
 		%\caption{Apply yellow and adjust alpha of \autoref{fig:nucleon_ori}(a)}
 		\label{fig:nucleon_2_yellow}
+	\end{minipage}
+	\begin{minipage}{.24\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{tf_nucleon_2_blue}
+		%\caption{TF of \autoref{fig:nucleon_2_blue}}
+		\label{fig:tf_nucleon_2_blue}
 	\end{minipage}~
-	\begin{minipage}{.29\textwidth}
+	\begin{minipage}{.24\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_nucleon_2_yellow}
 		%\caption{TF of \autoref{fig:nucleon_2_yellow}}
@@ -681,16 +681,16 @@ With this method, different features would have distinct colors, so that they ar
 
 \section{Results}
 
-We have implemented our approach with a GPU-Raycast volume renderer with the visibility computation and rendering implemented on a GPU using CUDA. The implementation is quite lightweight and achieves real-time performance at 30 to 40 frames per second on a computer equipped with an Intel Xeon E3-1246 v3 CPU and an NVIDIA Quadro K4200 graphics card.
+We implemented our approach with a GPU-raycast volume renderer with the visibility computation and volume rendering implemented on a GPU using CUDA. The implementation is lightweight and achieves real-time performance at 30 to 40 frames per second on a computer equipped with an Intel Xeon E3-1246 v3 CPU and an NVIDIA Quadro K4200 graphics card.
 %When the color and alpha blending is performed on a user-selected region, the first pass of volume ray-casting is done to calculate the global and local visibility histograms and the volume is rendered in the second pass of ray-casting using the transfer function from the blending result.
 
 \subsection{Output-driven Transfer Function Editing}
 
 \autoref{fig:Nucleon_2}(left) displays the result of both applying color blue and adjusting alpha of the TF in \autoref{fig:nucleon_ori}(b). Note that the intensity ranges with initial red color in the middle of the transfer function have been blended with blue and have become purple.
-Similarly, \autoref{fig:Nucleon_2}(right) shows the result of applying yellow and adjusting alpha. Here, the intensity ranges in the middle have become orange after blending with the color yellow. 
+Similarly, \autoref{fig:Nucleon_2}(right) shows the result of applying yellow and adjusting alpha. Here, the intensity ranges in the middle have become orange after blending with yellow. 
 In both cases, the alpha of the relevant parts of the transfer function is increased and the alpha of the less relevant parts is decreased in order to emphasize the materials of interest.
 
-Figure \ref{fig:CT-knee_all}(left) shows a rendered image of a CT-Knee data set with a selected region over the bone. Figure \ref{fig:CT-knee_all}(right) shows the image and the transfer function after applying a blue color and alpha adjustment. The bone material becomes mostly blue and is emphasized due to increased opacity, while the materials around the bone with lower relative intensity ranges are de-emphasized.
+Figure \ref{fig:CT-knee_all}(left) shows a rendered image of a CT-Knee data set with a selected region over the bone and the initial transfer function. Figure \ref{fig:CT-knee_all}(right) shows the image and the transfer function after applying a blue color and alpha adjustment. The bone material becomes mostly blue and is emphasized due to increased opacity, while the materials around the bone with lower relative intensity ranges are de-emphasized.
 
 Figure \ref{fig:Vortex_all} shows results of enhancing one time-step of a turbulent vortex data set.
 \autoref{fig:Vortex_all}(a) shows the rendered image and original transfer function.
@@ -708,28 +708,28 @@ The examples show that the technique can be applied effectively to a range of di
 (a)
 		\label{fig:CT-Knee}
 	\end{minipage}~
-	\begin{minipage}{.245\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{tf_CT-Knee}
-		%\caption{TF of \autoref{fig:CT-Knee}}
-(b)
-		\label{fig:tf_CT-Knee}
-	\end{minipage}
 	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{CT-Knee_blue_crop}
 		%\caption{Apply blue and adjust alpha of \autoref{fig:CT-Knee}}
 (c)
 		\label{fig:CT-Knee_blue}
+	\end{minipage}
+	\begin{minipage}{.24\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{tf_CT-Knee}
+		%\caption{TF of \autoref{fig:CT-Knee}}
+		(b)
+		\label{fig:tf_CT-Knee}
 	\end{minipage}~
-	\begin{minipage}{.245\textwidth}
+	\begin{minipage}{.24\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_CT-Knee_blue}
 		%\caption{TF of \autoref{fig:CT-Knee_blue}}
 (d)
 		\label{fig:tf_CT-Knee_blue}
 	\end{minipage}
-	\caption{(a) \& (b): CT-Knee data set and basic TF; (c) \& (d): Volume rendering and TF after blue applied and opacity enhanced for selected region}
+	\caption{Left: CT-Knee data set and basic TF; Right: Volume rendering and TF after blue applied and opacity enhanced for selected region}
 	\label{fig:CT-knee_all}
 	
 \end{figure}
@@ -995,11 +995,11 @@ However, the two approaches differ in how features are identified and transfer f
 The approach by Ropinski et al. generates two further strokes which are both parallel to the user-drawn stroke along the silhouette and positioned in the same distance on its opposite sides. 
 They hypothesize that the inner stroke covers the feature of interest in image space while the outer stroke does not cover it.
 %The distance for placing the two strokes has to be manually adapted for different shapes.
-In some cases, such as a complex flow visualization, it may be difficult draw a stroke along the silhouette and determine a distance so that the two further generated strokes would be one inside the feature of interest and the other outside of it.
+In some cases, such as a complex flow visualization, it may be difficult to draw a stroke along the silhouette and determine a distance so that the two further generated strokes would be one inside the feature of interest and the other outside of it.
 
 In our transfer function components approach, only a region inside the feature of interest is needed for creating a transfer function component to represent the feature. Moreover, apart from selecting a rectangular region around the mouse position, the user can also select segments generated from k-means clustering in image space. The segments often cover more pixels and thus lead to smoother transfer function components.
 
-Both the visibility-driven transfer functions by Correa and Ma \cite{correa_visibility_2011} and the feature visibility technique by Wang et al. \cite{wang_efficient_2011} utilize iterative optimizations to refine the transfer functions. Correa and Ma derived the target visibility distribution from the user-defined transfer function, while Wang et al. allow the user to specify the target feature visibility. The transfer functions are then refined by minimizing the difference between the visibility distribution of the current volume rendering and the target visibility distribution. On the other hand, our approaches do not involve an iterative optimization process. The relative visibility histogram is only computed once in either the output-driven color and alpha editing or creating a transfer function component from a user-selected region. 
+Both the visibility-driven transfer functions by Correa and Ma \cite{correa_visibility_2011} and the feature visibility technique by Wang et al. \cite{wang_efficient_2011} utilize iterative optimizations to refine the transfer functions. Correa and Ma derived the target visibility distribution from the user-defined transfer function, while Wang et al. allow the user to specify the target feature visibility. The transfer functions are then refined by minimizing the difference between the visibility distribution of the current volume rendering and the target visibility distribution. In contrast, our approaches do not involve an iterative optimization process. The relative visibility histogram is only computed once in either the output-driven color and alpha editing or creating a transfer function component. 
 
 However, the proposed techniques are subject to the limitations of 1D transfer functions, e.g. it is not possible to separate features of interest that overlap in the 1D transfer function domain.
 Both the color and alpha editing and transfer function components techniques are based on relative visibility histograms, which indicate the difference between the global visibility distribution across the volume and the local visibility distribution within the user-selected region. Therefore, only materials that are visible in the initial transfer function can be captured and edited by the proposed techniques.
