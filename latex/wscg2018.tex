@@ -165,7 +165,7 @@ In this paper, we propose a technique which enables us to infer a user's intende
 Based on this weighting, the user can directly modify colors and opacity values in the rendered image of the volume data, in a manner analogous to painting a 3D scene.
 In addition, we introduce an automated technique for creating transfer function components from relative visibility histograms to represent features of interest in the selected regions.
 %using relative visibility histograms.
-This technique allows users to edit transfer function on a feature level by manipulating the colors and opacity values of the components and merge them to create new transfer functions.
+This technique allows users to edit transfer function on a feature level by manipulating the colors and opacity values of the components and merging them to create new transfer functions.
 Compared to other similar techniques, our approach is relatively lightweight, requiring only intermediate information about the visibility of data samples. It is thus simple to implement and performs in real-time.
 
 %We propose an intuitive approach for applying colors and adjusting alpha of the transfer function using relative visibility histograms as weighting for color and alpha blending. Relative visibility histograms are derived from the difference between the global visibility histogram and the local visibility histogram computed for the user-selected region.
@@ -183,7 +183,7 @@ Transfer function specification is an essential part of the volume visualization
 %A one-dimensional transfer function is a mapping from scalar values to color and alpha values.
 The specification is often achieved by a trial-and-error process, which involves a significant amount of tweaking of colors and opacity values, and the resultant visualization largely depends on how well the transfer function captures features of interest \cite{kniss_multidimensional_2002} \cite{kindlmann_curvature-based_2003}.% \cite{potts_transfer_2004}.
 %However, it is non-trivial to obtain an effective transfer function. The specification is often achieved by a trial-and-error process, which involves a significant amount of tweaking of color and opacity.
-One of the challenges for such an approach is highlighted by Mindek et al.~\cite{mindek_data-sensitive_2017} who argue that often small changes in input parameters (i.e. the transfer function parameters) can lead to dis-proportionally large changes to the visualization. While Mindek et al. propose a data-sensitive solution that addresses this dis-proportionality, others take the route of output-driven transfer function editing, that is, manipulation of what is rendered, without the user being explicitly exposed to the underlying changes to the transfer function.
+One of the challenges for such an approach is highlighted by Mindek et al.~\cite{mindek_data-sensitive_2017} who argue that often small changes in input parameters (i.e. the transfer function variables) can lead to disproportionately large changes to the visualization. While Mindek et al. propose a data-sensitive solution that addresses this disproportionality, others take the route of output-driven transfer function editing, that is, manipulation of what is rendered, without the user being explicitly exposed to the underlying changes to the transfer function.
 
 
 %Cai et al. \cite{cai_automatic_2013} described a method to derive opacity transfer functions by minimizing the Jensen-Shannon divergence between the observed visibility distribution and a user-defined target distribution. The target distribution can be defined using Gaussian function weighting.
@@ -194,7 +194,6 @@ One of the challenges for such an approach is highlighted by Mindek et al.~\cite
 For instance, Guo et al. \cite{guo_wysiwyg_2011} proposed a sketch-based approach that allows direct manipulation of transfer functions by brushing strokes on top of volume rendered images, which is similar to the operations in painting applications for 2D images.
 Later, Guo and Yuan \cite{guo_local_2013} extended the sketch-based technique for specifying local transfer functions for topology regions using contour trees.
 %Providing exemplar images from specific transfer  functions is another method for assisting the user in transfer function design.
-
 Wu and Qu \cite{wu_interactive_2007} presented an approach that allows users to select sample images rendered using predefined transfer functions and generates new transfer functions by fusing multiple features in distinct volume renderings.
 Bruckner and Gr{\"o}ller \cite{bruckner_style_2007} presented style transfer functions, which allow the user to specify styles extracted from actual illustrations in the transfer function.
 %Their approach also exploits curvature information \cite{kindlmann_curvature-based_2003} to improve the illustrative effects, e.g. adjusting the thickness of style-based contours based on the curvature along the viewing direction.
@@ -251,29 +250,29 @@ Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives 
 	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_crop}\\
-		(a)%\caption{Nucleon}
+		%(a)%\caption{Nucleon}
 		\label{fig:nucleon}
 	\end{minipage}~
 	\begin{minipage}{.245\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_nucleon}\\
-		(b)%\caption{TF of \autoref{fig:nucleon}}
+		%(b)%\caption{TF of \autoref{fig:nucleon}}
 		\label{fig:tf_nucleon}
 	\end{minipage}
 	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_2_color_crop}
-		(c)%\caption{Apply blue to \autoref{fig:nucleon}}
+		%(c)%\caption{Apply blue to \autoref{fig:nucleon}}
 		\label{fig:nucleon_2_color}
 	\end{minipage}~
 	\begin{minipage}{.2\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{nucleon_2_alpha_crop}
-		(d)%\caption{Adjust alpha of \autoref{fig:nucleon}}
+		%(d)%\caption{Adjust alpha of \autoref{fig:nucleon}}
 		\label{fig:nucleon_2_alpha}
 	\end{minipage}
 	%\caption{Example use case: (a) Nucleon data with small selected region (b) original transfer function;(c) Blue color applied to red region; (d) Alpha of red region adjusted	} 
-	\caption{Example operations using our technique. (a) Nucleon with a selected region; (b) TF of (a); (c) Blue applied to selected material; (d) opacity of selected material enhanced}
+	\caption{Sample operations using our technique. Top row: a nucleon with a selected region and its TF. Bottom left: Selected material colored in blue; Bottom right: Opacity of selected material enhanced}
 	\label{fig:nucleon_ori}
 \end{figure}
 
@@ -304,7 +303,7 @@ Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives 
 		(d) %		\caption{Smoothed relative visibility histogram}
 		\label{fig:relative_visibility_histogram_with_gaussian}
 	\end{minipage}
-	\caption{(a) Global Visibility Histogram of data set shown in \autoref{fig:nucleon_ori}(a); (b) Local Visibility Histogram of selected region; (c) Relative Visibility Histogram; (d) Relative visibility histogram after smoothing}
+	\caption{(a) Global Visibility Histogram of data set shown in \autoref{fig:nucleon_ori}; (b) Local Visibility Histogram of selected region; (c) Relative Visibility Histogram; (d) Relative visibility histogram after smoothing}
 	\label{fig:nucleon_hist}
 \end{figure}
 
@@ -478,7 +477,7 @@ Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b
 		\includegraphics[width=1\linewidth]{nucleon_red_Relative_visibility_histogram}
 (f)
 	\end{minipage}
-	\caption{Left: A TF component (c) created from a green rectangular region (a) (highlighted in inverted colors) and its relative visibility histogram (e); Right: A TF component (d) created from a red region (b) and its relative visibility histogram (f).}
+	\caption{Examples of rectangular region selections. Left: A TF component (c) created from a green rectangular region (a) (highlighted in inverted colors) and its relative visibility histogram (e); Right: A TF component (d) created from a red region (b) and its relative visibility histogram (f).}
 	\label{fig:nucleon_features}
 \end{figure}
 
@@ -514,7 +513,7 @@ Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b
 		\includegraphics[width=1\linewidth]{nucleon_red_segment_Relative_visibility_histogram}
 (f)
 	\end{minipage}
-	\caption{Left: A TF component (c) created from a green generalized selection segment (a) (highlighted in inverted colors) and its relative visibility histogram (e); Right: A TF component (d) created from a red segment (b) and its relative visibility histogram (f).}
+	\caption{Examples of generalized segment selections. Left: A TF component (c) created from a green generalized selection segment (a) (highlighted in inverted colors) and its relative visibility histogram (e); Right: A TF component (d) created from a red segment (b) and its relative visibility histogram (f).}
 	\label{fig:nucleon_segments}
 \end{figure}
 
@@ -544,7 +543,7 @@ Compared to the rectangular regions in \autoref{fig:nucleon_features} (a) and (b
 %	\caption{nucleon_merged_segment_green_red}
 %	\label{fig:nucleon_merged_segment_green_red}
 	\end{minipage}
-	\caption{(a) and (c): Volume rendering and its TF obtaing from merging the TF components in \autoref{fig:nucleon_features} using \emph{rectangular selection}; (b) and (d): Volume rendering and TF based on \emph{generalized selection} in \autoref{fig:nucleon_segments}}
+	\caption{(a) and (c): Volume rendering and its TF obtained from merging the TF components in \autoref{fig:nucleon_features} using \emph{rectangular selection}; (b) and (d): Volume rendering and TF based on \emph{generalized selection} in \autoref{fig:nucleon_segments}}
 	\label{fig:nucleon_merged}
 \end{figure}
 
@@ -674,7 +673,7 @@ With this method, different features would have distinct colors, so that they ar
 	%		\caption{Pick inside}
 	%		\label{fig:nucleon_3_yellow}
 	%		\end{minipage}
-	\caption{Left: Blue applied to selected region of TF in \autoref{fig:nucleon_ori}(b) and opacity enhanced; Right: Yellow applied and opacity enhanced. The modified TF is shown for each case alongside the rendering}
+	\caption{Combining operations. Left: Blue applied to selected region of TF in \autoref{fig:nucleon_ori} and opacity enhanced; Right: Yellow applied and opacity enhanced. The modified TF is shown for each case below the rendering}
 	\label{fig:Nucleon_2}
 \end{figure}
 
@@ -688,7 +687,7 @@ The implementation is lightweight and achieves real-time performance at 30 to 40
 
 \subsection{Output-driven Transfer Function Editing}
 
-\autoref{fig:Nucleon_2}(left) displays the result of both applying color blue and adjusting alpha of the TF in \autoref{fig:nucleon_ori}(b). Note that the intensity ranges with initial red color in the middle of the transfer function have been blended with blue and have become purple.
+\autoref{fig:Nucleon_2}(left) displays the result of both applying color blue and adjusting alpha of the TF in \autoref{fig:nucleon_ori}. Note that the intensity ranges with initial red color in the middle of the transfer function have been blended with blue and have become purple.
 Similarly, \autoref{fig:Nucleon_2}(right) shows the result of applying yellow and adjusting alpha. Here, the intensity ranges in the middle have become orange after blending with yellow. 
 In both cases, the alpha of the relevant parts of the transfer function is increased and the alpha of the less relevant parts is decreased in order to emphasize the materials of interest.
 
@@ -811,7 +810,7 @@ In \autoref{fig:vortex_merged}, the three transfer function components are merge
 
 \autoref{fig:supernova_merge} displays the results of merging two transfer function components, i.e. the red feature and the green feature, with weights \{1, 1\}. The transfer function components are created from the user-selected rectangular regions in \autoref{fig:supernova_selection} (a) and (b), and the user-selected generalized segments in \autoref{fig:supernova_selection} (c) and (d) respectively. \autoref{fig:supernova_selection} (e) shows the initial transfer function used for volume rendering.
 
-From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed that the transfer function components created from segments are smoother and have wider intensity ranges than those created from rectangular regions.
+From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observe that the transfer function components created from segments are smoother and have wider intensity ranges than those created from rectangular regions.
 
 \begin{figure}
 	\centering
@@ -887,7 +886,7 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 		\includegraphics[width=1\linewidth]{tf_vortex_merged_segment_green_red_purple}
 		(f)
 	\end{minipage}
-	\caption{Merge 3 features with weights \{2, 1, 0.2\} and colors from peaks of TF components; (a) and (d): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_features}; (b) and (e): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} with color blending; (c) and (f): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} using colors of the dominant components}
+	\caption{Merging 3 features with weights \{2, 1, 0.2\} and colors from peaks of TF components; (a) and (d): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_features}; (b) and (e): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} with color blending; (c) and (f): Volume rendering and TF from merging the TF components in \autoref{fig:vortex_segments} using colors of the dominant components}
 	\label{fig:vortex_merged}
 \end{figure*}
 
@@ -960,16 +959,16 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 
 \begin{figure*}
 	\centering
-	\begin{minipage}{.4\textwidth}
+	\begin{minipage}{.36\textwidth}
 		\centering
-		\includegraphics[width=1\linewidth]{crop/supernova_merged_red_green}
+		\includegraphics[width=1\linewidth]{crop/supernova_merged_red_green_crop}
 		(a)
 	\end{minipage}~
-	\begin{minipage}{.4\textwidth}
+	\begin{minipage}{.36\textwidth}
 		\centering
-		\includegraphics[width=1\linewidth]{crop/supernova_merged_segment_red_green}
+		\includegraphics[width=1\linewidth]{crop/supernova_merged_segment_red_green_crop}
 		(b)
-	\end{minipage}
+	\end{minipage}\\
 	\begin{minipage}{.4\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{tf_supernova_merged_red_green}
@@ -980,7 +979,7 @@ From \autoref{fig:vortex_merged} and \autoref{fig:supernova_merge}, we observed 
 		\includegraphics[width=1\linewidth]{tf_supernova_merged_segment_red_green}
 		(d)
 	\end{minipage}
-	\caption{Merge 2 features with weights \{1, 1\} and colors from peaks of TF components; (a) \& (c): Volume rendering and TF from merging the TF components in \autoref{fig:supernova_selection} (a) and (b); (b) \& (d): Volume rendering and TF from merging the TF components in \autoref{fig:supernova_selection} (c) and (d)}
+	\caption{Merging 2 features with weights \{1, 1\} and colors from peaks of TF components; (a) \& (c): Volume rendering and TF from merging the TF components in \autoref{fig:supernova_selection} (a) and (b); (b) \& (d): Volume rendering and TF from merging the TF components in \autoref{fig:supernova_selection} (c) and (d)}
 	\label{fig:supernova_merge}
 \end{figure*}
 
@@ -1001,7 +1000,8 @@ In some cases, such as a complex flow visualization, it may be difficult to draw
 
 In our transfer function components approach, only a region inside the feature of interest is needed for creating a transfer function component to represent the feature. Moreover, apart from selecting a rectangular region around the mouse position, the user can also select segments generated from k-means clustering in image space. The segments often cover more pixels and thus lead to smoother transfer function components.
 
-Both the visibility-driven transfer functions by Correa and Ma \cite{correa_visibility_2011} and the feature visibility technique by Wang et al. \cite{wang_efficient_2011} utilize iterative optimizations to refine the transfer functions. Correa and Ma derived the target visibility distribution from the user-defined transfer function, while Wang et al. allow the user to specify the target feature visibility. The transfer functions are then refined by minimizing the difference between the visibility distribution of the current volume rendering and the target visibility distribution. In contrast, our approaches do not involve an iterative optimization process. The relative visibility histogram is only computed once in either the output-driven color and alpha editing or creating a transfer function component. 
+Both the visibility-driven transfer functions by Correa and Ma \cite{correa_visibility_2011} and the feature visibility technique by Wang et al. \cite{wang_efficient_2011} utilize iterative optimizations to refine the transfer functions. Correa and Ma derived the target visibility distribution from the user-defined transfer function, while Wang et al. allow the user to specify the target feature visibility. The transfer functions are then refined by minimizing the difference between the visibility distribution of the current volume rendering and the target visibility distribution. In contrast, our approaches do not involve an iterative optimization process. The relative visibility histogram is only computed once in both of the uses cases we presented.
+%either the output-driven color and alpha editing or creating a transfer function component. 
 
 However, the proposed techniques are subject to the limitations of 1D transfer functions, e.g. it is not possible to separate features of interest that overlap in the 1D transfer function domain.
 Both the color and alpha editing and transfer function components techniques are based on relative visibility histograms, which indicate the difference between the global visibility distribution across the volume and the local visibility distribution within the user-selected region. Therefore, only materials that are visible in the initial transfer function can be captured and edited by the proposed techniques.
