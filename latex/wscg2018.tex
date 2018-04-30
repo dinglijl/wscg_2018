@@ -320,14 +320,14 @@ H_{R}=H_{r}/max(abs(H_{r}))
 where $ H_{r}=H_{L}-H$.
 The relative visibility histogram is scaled to the range $ [-1,1] $ by dividing by the maximum absolute value in the histogram. 
 
-The purpose of the relative visibility histogram is as follows: firstly the local $ H_L $ component captures the dominant intensities in the ROI. Secondly, the subtraction and normalization against the global context captures a representation of which intensities are particularly densely distributed within the ROI and not elsewhere in the view. Essentially, we assume that when a user selects any particular ROI to select a subset of the volume, there is a strong likelihood that they will choose an area that contains a high number of voxels of the intensity ranges that they are interested in and that stands out as clearly dominated by that intensity range compared to the rest of the view. 
+The purpose of the relative visibility histogram is as follows: firstly the local $ H_L $ component captures the dominant intensities in the ROI. Secondly, the subtraction and normalization against the global context capture a representation of which intensities are particularly densely distributed within the ROI and not elsewhere in the view. Essentially, we assume that when a user selects any particular ROI to select a subset of the volume, there is a strong likelihood that they will choose an area that contains a high number of voxels of the intensity ranges that they are interested in and that stands out as clearly dominated by that intensity range compared to the rest of the view. 
 
 
 An example is illustrated in Figure \ref{fig:nucleon_ori} and \ref{fig:nucleon_hist}.
 \autoref{fig:nucleon_ori} shows a nucleon data set, its associated transfer function and sample modifications using our technique.
 The global visibility histogram is shown in 
 \autoref{fig:nucleon_hist}(a) and the local visibility histogram for the region of interest (the rectangle in inverted color) is shown in \autoref{fig:nucleon_hist}(b). The relative visibility histogram
-is show in \autoref{fig:nucleon_hist}(c).
+is shown in \autoref{fig:nucleon_hist}(c).
 
 
 
@@ -427,7 +427,7 @@ where $ H_{G}(i) $ is the value of the relative visibility histogram $ H_{G} $ a
 
 %A LOT OF AMBIGUITY HERE; we are using region for the rectangle but also region for the green object in the rendering
 %\autoref{fig:nucleon_features} displays two transfer function components created by a selection within a green region and a red region in rendered volume image respectively.
-\autoref{fig:nucleon_features} displays two examples of transfer function components created by a rectangular selection within the rendered volume image respectively.
+\autoref{fig:nucleon_features} displays two examples of the transfer function components created by a rectangular selection within the rendered volume image respectively.
 \autoref{fig:nucleon_features} (a) and (b) show the two selected regions in the volume rendering. \autoref{fig:nucleon_features} (c) and (d) show the two transfer function components which represent the relative visibility distributions of features in the two user-selected regions respectively. The regions are rectangles centered around a single point in 2D screen space, and the region sizes can be modified according to the user's need.
 
 \subsection{Image-Space Clustering for region of interest selection}
@@ -582,7 +582,7 @@ where $ a(i) $ is the weighted sum of transfer function components, i.e.
 a(i)=\sum_{j=1}^{n} w_{j}F_{j}(i)
 \]
 
-where $ w_{j} $ ($ w_{j} \geq 0 $) is the weight for transfer function component $ F_{j} $, $ F_{j}(i) $ is the value of $ F_{j} $ at intensity $ i $, and $ n $ is the number of transfer function components.
+where $ w_{j} $ ($ w_{j} \geq 0 $) is the weight of transfer function component $ F_{j} $, $ F_{j}(i) $ is the value of $ F_{j} $ at intensity $ i $, and $ n $ is the number of transfer function components.
 
 \autoref{fig:nucleon_merged} shows the results of merging the transfer function components in \autoref{fig:nucleon_features} and \autoref{fig:nucleon_segments} respectively.
 
@@ -731,7 +731,7 @@ The examples show that the technique can be applied effectively to a range of di
 (d)
 		\label{fig:tf_CT-Knee_blue}
 	\end{minipage}
-	\caption{Left: CT-Knee data set and basic TF; Right: Volume rendering and TF after blue applied and opacity enhanced for selected region}
+	\caption{Left: CT-Knee data set and basic TF; Right: Volume rendering and TF after blue applied and opacity enhanced for the selected region}
 	\label{fig:CT-knee_all}
 	
 \end{figure}
