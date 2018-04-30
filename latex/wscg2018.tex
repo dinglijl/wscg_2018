@@ -685,13 +685,15 @@ Our solution comprises a ray-cast volume renderer and a visibility computation m
 The implementation is lightweight and achieves real-time performance at 30 to 40 frames per second on a computer equipped with an Intel Xeon E3-1246 v3 CPU and an NVIDIA Quadro K4200 graphics card.
 %When the color and alpha blending is performed on a user-selected region, the first pass of volume ray-casting is done to calculate the global and local visibility histograms and the volume is rendered in the second pass of ray-casting using the transfer function from the blending result.
 
+We present some results to demonstrate the effectiveness of our approach on the nucleon (voxel dimensions: $ 41 \times 41 \times 41 $), CT-knee (379 $ \times $ 229 $ \times $ 305) data sets, one time-step of a simulated turbulent vortex flow (128 $\times$ 128 $\times$ 128) and one time-step of a simulated supernova (432 $\times$ 432 $\times$ 432) data set.
+
 \subsection{Output-driven Transfer Function Editing}
 
 \autoref{fig:Nucleon_2}(left) displays the result of both applying color blue and adjusting alpha of the TF in \autoref{fig:nucleon_ori}. Note that the intensity ranges with initial red color in the middle of the transfer function have been blended with blue and have become purple.
 Similarly, \autoref{fig:Nucleon_2}(right) shows the result of applying yellow and adjusting alpha. Here, the intensity ranges in the middle have become orange after blending with yellow. 
 In both cases, the alpha of the relevant parts of the transfer function is increased and the alpha of the less relevant parts is decreased in order to emphasize the materials of interest.
 
-Figure \ref{fig:CT-knee_all}(left) shows a rendered image of a CT-Knee data set with a selected region over the bone and the initial transfer function. Figure \ref{fig:CT-knee_all}(right) shows the image and the transfer function after applying a blue color and alpha adjustment. The bone material becomes mostly blue and is emphasized due to increased opacity, while the materials around the bone with lower relative intensity ranges are de-emphasized.
+Figure \ref{fig:CT-knee_all}(left) shows a rendered image of a CT-knee data set with a selected region over the bone and the initial transfer function. Figure \ref{fig:CT-knee_all}(right) shows the image and the transfer function after applying a blue color and alpha adjustment. The bone material becomes mostly blue and is emphasized due to increased opacity, while the materials around the bone with lower relative intensity ranges are de-emphasized.
 
 Figure \ref{fig:Vortex_all} shows results of enhancing one time-step of a turbulent vortex data set.
 \autoref{fig:Vortex_all}(a) shows the rendered image and original transfer function.
@@ -730,7 +732,7 @@ The examples show that the technique can be applied effectively to a range of di
 (d)
 		\label{fig:tf_CT-Knee_blue}
 	\end{minipage}
-	\caption{Left: CT-Knee data set and basic TF; Right: Volume rendering and TF after blue applied and opacity enhanced for the selected region}
+	\caption{Left: CT-knee data set and basic TF; Right: Volume rendering and TF after blue applied and opacity enhanced for the selected region}
 	\label{fig:CT-knee_all}
 	
 \end{figure}
